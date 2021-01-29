@@ -1,0 +1,101 @@
+%-------------------------------------------------------------------
+% Document class and package definitions
+%-------------------------------------------------------------------
+\documentclass[12pt,a4paper,openright,final,twoside]{main}
+
+%Included for Gather Purpose only:
+%input "thesisreferences.bib"
+
+\begin{document}
+
+\defaultbibliography{thesisreferences}     %% Change this only.
+\defaultbibliographystyle{ieeetran}        %% Could be changed if you like 
+                                           %% references typeset differently.
+%-------------------------------------------------------------------
+% Define title, author, etc.
+%-------------------------------------------------------------------
+\def\thesistitle{Embedded IoT for Eclipse Arrowhead}
+\def\theauthor{Albin Martinsson}
+\def\theaddress{Dept.\ of Computer Science and Electrical Engineering\\
+Lule{\aa} University of Technology\\ Lule{\aa}, Sweden}
+
+\def\supervisors{Jan van Deventer}
+\def\supervisorstring{Supervisor:} % Edit here if you have only one supervisor
+\def\dedication{To my dad Bengt-Göran Martinsson a special thanks for proof reading is required...}
+
+% Read abstract and preface from separate files.
+% Make sure these exist. See example files.
+\def\theabstract{\input{Chapters/abstract}}
+\def\thepreface{\input{Chapters/preface}}
+
+
+% Change here if you want to remove the logo printed on the first page
+
+\def\thelogo{\includegraphics[width=\textwidth]{example-image-a} \\ \vspace{1cm}} % old EU logo
+%\def\thelogo{} % no logo
+
+% The definitions above could be put directly in the function call below,
+% but is here defined explicitly, for the purpose of clarity.
+
+\startpreamble
+  {\thesistitle}
+  {\theauthor}
+  {\theaddress}
+  {\supervisors}
+  {\dedication}
+  {\theabstract}
+  {\thepreface}
+  {\thelogo}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Begin Part I
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%% Initialize part containing the thesis introduction chapters
+\startchapters
+\begin{bibunit}
+%------------------------ Start chapter 1 --------------------------
+% The \makechapter command takes three arguments
+%  1) An abbreviated version of the chapter name,
+%     to be used as page header
+%  2) String to be added to the table of contents
+%  3) The chapter name, possibly split in to lines,
+%     as in Chapter 2 below.
+%
+%  The different arguments can have different line breaks.
+%
+% The actual contents of the chapter is included by removing the
+% comment from the \input line below. Make sure the file
+% chapter1.tex exists.
+%-------------------------------------------------------------------
+
+\makechapter{Introduction}{Introduction}{Introduction\label{ch1}}
+\pagenumbering{arabic}
+\input{Chapters/introduction}
+
+\makechapter{Related work}{Related work}{Related work\label{ch2}}
+\input{Chapters/related_work}
+
+\makechapter{Theory}{Theory}{Theory\label{ch3}}
+\input{Chapters/theory}
+
+\makechapter{Implementation}{Implementation}{Implementation\label{ch4}}
+\input{Chapters/implementation}
+
+\makechapter{Evaluation}{Evaluation}{Evaluation \label{ch5}}
+\input{Chapters/evaluation}
+
+\makechapter{Discussion}{Discussion}{Discussion\label{ch6}}
+\input{Chapters/discussion}
+
+\makechapter{Conclusions and future work}{Conclusions and future work}{Conclusions and future work\label{ch7}}
+\input{Chapters/conclusions_and_future_work}
+
+\makechapter{References}{References}{References\label{ch8}}
+\input{Chapters/references}
+
+\makebib
+\end{bibunit}
+
+\end{document}
