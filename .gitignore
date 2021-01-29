@@ -30,3 +30,12 @@
 *.exe
 *.out
 *.app
+Report/bu1.aux
+Report/bu1.bbl
+Report/bu1.blg
+Report/main.aux
+Report/main.fdb_latexmk
+Report/main.fls
+Report/main.log
+Report/main.synctex.gz
+Report/main.toc
