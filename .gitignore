@@ -39,3 +39,12 @@ Report/main.fls
 Report/main.log
 Report/main.synctex.gz
 Report/main.toc
+Programming/WolfSSLTest/certs/certificate.cer
+.gitignore
+Programming/WolfSSLTest/certs/cert.cer
+Programming/WolfSSLTest/certs/cacert.pem
+Programming/WolfSSLTest/certs/cert1.cer
+Programming/WolfSSLTest/certs/newfile.crt.pem
+Programming/WolfSSLTest/certs/test_provider.cer
+Programming/WolfSSLTest/certs/privkey.pem
+Programming/WolfSSLTest/Core/Inc/cert.h

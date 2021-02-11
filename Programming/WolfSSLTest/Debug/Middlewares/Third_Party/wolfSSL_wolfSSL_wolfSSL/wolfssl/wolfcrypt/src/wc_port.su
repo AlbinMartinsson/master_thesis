@@ -1,0 +1,13 @@
+wc_port.c:113:5:wolfCrypt_Init	16	static
+wc_port.c:295:5:wolfCrypt_Cleanup	16	static
+wc_port.c:738:16:wc_InitAndAllocMutex	16	static
+wc_port.c:759:7:wc_strtok	40	static
+wc_port.c:812:7:wc_strsep	32	static
+wc_port.c:843:5:wolfSSL_CryptHwMutexInit	16	static
+wc_port.c:854:5:wolfSSL_CryptHwMutexLock	16	static
+wc_port.c:864:5:wolfSSL_CryptHwMutexUnLock	16	static
+wc_port.c:913:9:wc_InitMutex	16	static
+wc_port.c:919:9:wc_FreeMutex	16	static
+wc_port.c:926:9:wc_LockMutex	16	static
+wc_port.c:933:9:wc_UnLockMutex	16	static
+wc_port.c:2376:7:mystrnstr	32	static

@@ -1,0 +1,13 @@
+misc.c:318:32:min	16	static
+hmac.c:125:5:wc_HmacSizeByType	24	static
+hmac.c:200:5:_InitHmac	32	static
+hmac.c:279:5:wc_HmacSetKey	48	static
+hmac.c:571:12:HmacKeyInnerHash	24	static
+hmac.c:654:5:wc_HmacUpdate	32	static
+hmac.c:757:5:wc_HmacFinal	24	static
+hmac.c:980:5:wc_HmacInit	32	static
+hmac.c:1051:6:wc_HmacFree	16	static
+hmac.c:1170:5:wolfSSL_GetHmacMaxSize	4	static
+hmac.c:1187:9:wc_HKDF_Extract	360	static
+hmac.c:1232:9:wc_HKDF_Expand	368	static
+hmac.c:1298:9:wc_HKDF	80	static

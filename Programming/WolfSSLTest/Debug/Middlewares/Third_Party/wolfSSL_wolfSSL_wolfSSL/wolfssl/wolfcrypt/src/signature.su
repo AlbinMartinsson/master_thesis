@@ -1,0 +1,8 @@
+signature.c:52:12:wc_SignatureDerEncode	32	static
+signature.c:73:5:wc_SignatureGetSize	32	static
+signature.c:120:5:wc_SignatureVerifyHash	56	static
+signature.c:256:5:wc_SignatureVerify	64	static
+signature.c:334:5:wc_SignatureGenerateHash	48	static
+signature.c:344:5:wc_SignatureGenerateHash_ex	56	static
+signature.c:444:5:wc_SignatureGenerate	48	static
+signature.c:454:5:wc_SignatureGenerate_ex	80	static

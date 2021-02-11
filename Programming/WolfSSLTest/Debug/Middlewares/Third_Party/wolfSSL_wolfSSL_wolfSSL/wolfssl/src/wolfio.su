@@ -1,0 +1,10 @@
+wolfio.c:1584:6:wolfSSL_CTX_SetIORecv	16	static
+wolfio.c:1595:6:wolfSSL_CTX_SetIOSend	16	static
+wolfio.c:1607:6:wolfSSL_SSLSetIORecv	16	static
+wolfio.c:1619:6:wolfSSL_SSLSetIOSend	16	static
+wolfio.c:1630:6:wolfSSL_SetIOReadCtx	16	static
+wolfio.c:1637:6:wolfSSL_SetIOWriteCtx	16	static
+wolfio.c:1644:7:wolfSSL_GetIOReadCtx	16	static
+wolfio.c:1653:7:wolfSSL_GetIOWriteCtx	16	static
+wolfio.c:1662:6:wolfSSL_SetIOReadFlags	16	static
+wolfio.c:1669:6:wolfSSL_SetIOWriteFlags	16	static

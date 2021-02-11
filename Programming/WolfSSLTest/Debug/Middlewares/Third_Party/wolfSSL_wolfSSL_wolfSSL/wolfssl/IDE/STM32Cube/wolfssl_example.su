@@ -1,0 +1,3 @@
+wolfssl_example.c:1452:13:ShowCiphers	24	static
+wolfssl_example.c:1466:13:PrintMemStats	4	static
+wolfssl_example.c:1522:6:wolfCryptDemo	32	static
