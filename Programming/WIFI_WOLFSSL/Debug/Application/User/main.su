@@ -1,0 +1,14 @@
+main.c:127:5:main	16	static
+main.c:196:12:wifi_start	40	static
+main.c:229:5:wifi_connect	32	static
+main.c:317:5:wifi_server	40	static
+main.c:365:13:WebServerProcess	32	static
+main.c:448:22:SendWebPage	152	static
+main.c:513:13:SystemClock_Config	96	static
+main.c:554:6:Button_Reset	4	static
+main.c:562:9:Button_WaitForPush	24	static
+main.c:585:1:__io_putchar	16	static
+main.c:627:1:__io_getchar	16	static
+main.c:667:6:HAL_GPIO_EXTI_Callback	16	static
+main.c:693:6:SPI3_IRQHandler	8	static
+main.c:701:13:Button_ISR	4	static

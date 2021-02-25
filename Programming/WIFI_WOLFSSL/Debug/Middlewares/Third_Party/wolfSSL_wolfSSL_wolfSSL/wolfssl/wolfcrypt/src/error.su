@@ -1,0 +1,2 @@
+error.c:37:13:wc_GetErrorString	16	static
+error.c:527:6:wc_ErrorString	16	static

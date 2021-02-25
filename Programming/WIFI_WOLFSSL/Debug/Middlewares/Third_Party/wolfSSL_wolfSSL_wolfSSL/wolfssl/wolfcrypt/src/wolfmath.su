@@ -1,0 +1,6 @@
+wolfmath.c:74:5:get_digit_count	16	static
+wolfmath.c:82:10:get_digit	16	static
+wolfmath.c:98:5:mp_cond_copy	48	static
+wolfmath.c:130:5:get_rand_digit	16	static
+wolfmath.c:136:5:mp_rand	32	static
+wolfmath.c:197:5:wc_export_int	32	static

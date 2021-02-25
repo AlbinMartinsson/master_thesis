@@ -1,0 +1,4 @@
+logging.c:161:5:wolfSSL_SetLoggingCb	16	static
+logging.c:173:20:wolfSSL_GetLoggingCb	4	static
+logging.c:183:5:wolfSSL_Debugging_ON	4	static
+logging.c:197:6:wolfSSL_Debugging_OFF	4	static

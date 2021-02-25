@@ -1,0 +1,2 @@
+wc_encrypt.c:49:5:wc_AesCbcDecryptWithKey	48	static
+wc_encrypt.c:86:5:wc_AesCbcEncryptWithKey	48	static

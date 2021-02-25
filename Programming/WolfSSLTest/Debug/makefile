@@ -51,34 +51,34 @@ endif
 
 -include ../makefile.defs
 
-BUILD_ARTIFACT_NAME := wolfSSLtest
+BUILD_ARTIFACT_NAME := wolfSSLTest
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX := 
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME).$(BUILD_ARTIFACT_EXTENSION)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-wolfSSLtest.elf \
+wolfSSLTest.elf \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-wolfSSLtest.list \
+wolfSSLTest.list \
 
 OBJCOPY_BIN += \
-wolfSSLtest.bin \
+wolfSSLTest.bin \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: wolfSSLtest.elf secondary-outputs
+main-build: wolfSSLTest.elf secondary-outputs
 
 # Tool invocations
-wolfSSLtest.elf: $(OBJS) $(USER_OBJS) C:\Users\albin\Documents\GitHub\master_thesis\Programming\WolfSSLTest\STM32L4S5VITX_FLASH.ld
-	arm-none-eabi-gcc -o "wolfSSLtest.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\albin\Documents\GitHub\master_thesis\Programming\WolfSSLTest\STM32L4S5VITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="wolfSSLtest.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+wolfSSLTest.elf: $(OBJS) $(USER_OBJS) C:\Users\albin\Documents\GitHub\master_thesis\Programming\WolfSSLTest\STM32L4S5VITX_FLASH.ld
+	arm-none-eabi-gcc -o "wolfSSLTest.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\albin\Documents\GitHub\master_thesis\Programming\WolfSSLTest\STM32L4S5VITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="wolfSSLTest.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -87,13 +87,13 @@ default.size.stdout: $(EXECUTABLES)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-wolfSSLtest.list: $(EXECUTABLES)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "wolfSSLtest.list"
+wolfSSLTest.list: $(EXECUTABLES)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "wolfSSLTest.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-wolfSSLtest.bin: $(EXECUTABLES)
-	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "wolfSSLtest.bin"
+wolfSSLTest.bin: $(EXECUTABLES)
+	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "wolfSSLTest.bin"
 	@echo 'Finished building: $@'
 	@echo ' '
 
