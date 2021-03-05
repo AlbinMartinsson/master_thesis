@@ -115,69 +115,69 @@ public:
         */
 
         std::string sr_register_system_url = "http://localhost:8443/serviceregistry/mgmt/systems";
-        std::string register_provider_body = "{\"address\": \"localhost\", \"authenticationInfo\": \"\", \"port\": 1234, \"systemName\": \"test_provider\"}";
+        std::string register_provider_body = "{\"address\": \"localhost\", \"authenticationInfo\": \"\", \"port\": 1234, \"systemName\": \"test_provider15\"}";
         std::string register_provider_response = http_post_request_with_response(_net, sr_register_system_url, register_provider_body);
         printf("%s\n", register_provider_response.c_str());
         int provider_id = find_id(register_provider_response.c_str());
-
+     
         /*
         Registers a consumer 
         TODO Not getting status code, see what is up with that.
         */
-
-        std::string register_consumer_body = "{\"address\": \"localhost\", \"authenticationInfo\": \"\", \"port\": 1234, \"systemName\": \"test_consumer\"}";
+        
+        std::string register_consumer_body = "{\"address\": \"localhost\", \"authenticationInfo\": \"\", \"port\": 1234, \"systemName\": \"test_consumer16\"}";
         std::string register_consumer_response = http_post_request_with_response(_net, sr_register_system_url, register_consumer_body);
         printf("%s\n", register_consumer_response.c_str());
         int consumer_id = find_id(register_consumer_response.c_str());
-
+ 
         /*
         Registers a service definition
         TODO Not getting status code, see what is up with that.
         */
-
+        
         std::string sr_register_service_url = "http://localhost:8443/serviceregistry/mgmt";
-        std::string register_service_body = "{\"serviceDefinition\": \"test_service_definition1\", \"providerSystem\": {\"systemName\": \"test_provider\", \"address\": \"localhost\", \"port\": 1234, \"authenticationInfo\": \"\" }, \"interfaces\": [\"HTTPS-SECURE-JSON\"]}\r\n";
+        std::string register_service_body = "{\"serviceDefinition\": \"test_service_definition1\", \"providerSystem\": {\"systemName\": \"test_provider15\", \"address\": \"localhost\", \"port\": 1234, \"authenticationInfo\": \"\" }, \"interfaces\": [\"HTTPS-SECURE-JSON\"]}\r\n";
         std::string register_service_response = http_post_request_with_response(_net, sr_register_service_url, register_service_body);
         printf("%s\n", register_service_response.c_str());
         int service_id = find_service_id(register_service_response.c_str());
-
+        
         /*
         Performs intracloud authorization
         TODO Not getting status code, see what is up with that.
         */
-
+        
         std::string authorization_url = "http://localhost:8445/authorization/mgmt/intracloud";
         std::string add_intracloud_authorization_body = "{\"consumerId\": " + std::to_string(consumer_id) + ",\"interfaceIds\": [3], \"providerIds\": [" + std::to_string(provider_id) + "], \"serviceDefinitionIds\": [" + std::to_string(service_id) + "]}\r\n";
         std::string add_intracloud_authorization_response = http_post_request_with_response(_net, authorization_url, add_intracloud_authorization_body);
         printf("%s\n", add_intracloud_authorization_response.c_str());
-
+        
         /*
         Creates a orcestrator store entry
         TODO Not getting status code, see what is up with that.
         */
-
+        
         std::string orchestration_store_url = "http://localhost:8441/orchestrator/mgmt/store";
-        std::string create_orchestration_store_body = "[{ \"serviceDefinitionName\": \"test_service_definition1\", \"consumerSystemId\": " + std::to_string(consumer_id) + ", \"providerSystem\": { \"systemName\":  \"test_provider\", \"address\": \"localhost\", \"port\": 1234, \"authenticationInfo\": \"\"}, \"cloud\": { \"operator\": \"aitia\", \"name\": \"testcloud2\" }, \"serviceInterfaceName\": \"HTTPS-SECURE-JSON\", \"priority\": 1}]\r\n";
+        std::string create_orchestration_store_body = "[{ \"serviceDefinitionName\": \"test_service_definition1\", \"consumerSystemId\": " + std::to_string(consumer_id) + ", \"providerSystem\": { \"systemName\":  \"test_provider15\", \"address\": \"localhost\", \"port\": 1234, \"authenticationInfo\": \"\"}, \"cloud\": { \"operator\": \"aitia\", \"name\": \"testcloud2\" }, \"serviceInterfaceName\": \"HTTPS-SECURE-JSON\", \"priority\": 1}]\r\n";
         std::string create_orchestration_store_response = http_post_request_with_response(_net, orchestration_store_url, create_orchestration_store_body);
         printf("%s\n", create_orchestration_store_response.c_str());
-
+        
         /*
         Starts orchestration based on ID.
         TODO Not getting status code, see what is up with that.
         */
-
-        std::string orchestration_based_on_id_url = "http://localhost:8441/orchestrator/orchestration/" + std::to_string(consumer_id);
+        
+        std::string orchestration_based_on_id_url = "http://localhost:8441/orchestrator/orchestration/" + std::to_string(consumer_id);    
         std::string start_orchestration_based_on_id_response = http_get_request_with_response(_net, orchestration_based_on_id_url);
         printf("%s\n", start_orchestration_based_on_id_response.c_str());
-
+        
         /*
-        Post temperature to provider. Optional part, requires a flask app or similar running as a provider to serve the request.
+        Post temperature to provider.
         */
-        std::string provider_url = find_address_and_port(start_orchestration_based_on_id_response) + "temperature";
-        std::string provider_body = "{\"temperature\": \"" + std::to_string(temperature) + "\"}\r\n";
+        std::string provider_url = find_address_and_port(start_orchestration_based_on_id_response) + "temperature"; 
+        std::string provider_body = "{\"temperature\": \""  + std::to_string(temperature) + "\"}\r\n";
         std::string provider_response = http_post_request_with_response(_net, provider_url, provider_body);
         printf("%s\n", provider_response.c_str());
-
+                
 #if MBED_CONF_APP_USE_TLS_SOCKET
         result = _socket.set_root_ca_cert(root_ca_cert);
         if (result != NSAPI_ERROR_OK)
@@ -247,7 +247,7 @@ public:
     Finds the id of the systems.
     TODO rewrite to match find_address_and_port? 
     */
-
+    
     int find_id(const char *str)
     {
         const char *pch = strstr(str, "\"id\":");
@@ -304,20 +304,19 @@ public:
         std::string port = str.substr(pos_before_port + before_port.length(), pos_after_port - pos_before_port - before_port.length());
         return "http://" + address + ":" + port + "/";
     }
-
+    
     /*
     Makes a HTTP POST to url with body
     */
-
-    std::string http_post_request_with_response(NetworkInterface *_net, std::string url, std::string body)
-    {
+    
+    std::string http_post_request_with_response(NetworkInterface* _net, std::string url, std::string body){
         HttpRequest *post_request = new HttpRequest(_net, HTTP_POST, url.c_str());
         post_request->set_header("Content-Type", "application/json");
         HttpResponse *post_response = post_request->send(body.c_str(), strlen(body.c_str()));
         if (!post_response)
         {
-            printf("HttpRequest failed (error code %d)\n", post_request->get_error());
-            return std::to_string(post_request->get_error());
+        printf("HttpRequest failed (error code %d)\n", post_request->get_error());
+        return std::to_string(post_request->get_error());
         }
         printf("\n----- HTTP POST response -----\n");
         //dump_response(post_response);
@@ -325,14 +324,13 @@ public:
         delete post_response;
         return response_body;
     }
-
+    
     /*
     Makes a HTTP GET to url with body
     */
-
-    std::string http_get_request_with_response(NetworkInterface *_net, std::string url)
-    {
-        HttpRequest *get_request = new HttpRequest(_net, HTTP_GET, url.c_str());
+    
+    std::string http_get_request_with_response(NetworkInterface* _net, std::string url){
+       HttpRequest *get_request= new HttpRequest(_net, HTTP_GET, url.c_str());
 
         HttpResponse *get_request_response = get_request->send();
 
@@ -347,6 +345,7 @@ public:
         delete get_request_response;
         return response_body;
     }
+    
 
 private:
     NetworkInterface *_net;
