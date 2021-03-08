@@ -1,29 +1,66 @@
 # Arrowhead core systems demo
 
-## Prerequisites 
+# Prerequisites 
 
-### Arrowhead local cloud in insecure mode.
-You need a local arrowhead cloud with all core services running insecure mode in order to run this example.
+## Arrowhead local cloud in insecure mode.
+You need a local arrowhead cloud with all core services running insecure mode in order to run this example. 
 
-### ST-Link drivers
-You need to install the ST-link drivers from https://www.st.com/content/st_com/en/products/development-tools/software-development-tools/stm32-software-development-tools/stm32-programmers/stsw-link007.html
+Go to eclipse arrowheads [github](https://github.com/eclipse-arrowhead/core-java-spring) for information on that.
 
-### Tera term
-To view the output this example you will need to have tera term installed. Tera term can be downloaded from this [link](https://ttssh2.osdn.jp/index.html.en)
+## ST-Link drivers
+You need to install the ST-link drivers from [here](https://www.st.com/content/st_com/en/products/development-tools/software-development-tools/stm32-software-development-tools/stm32-utilities/stsw-link009.html.) In order to download you have to have an ST account. Download the file, unzip and install the version approriate to your system. To check that it works plug in your st-device and make sure it pops up as a unit on your computer.
 
-#### Tera tern setup
-When start tera term you need to change a couple of settings for the terminal so that the output presents itself in a nice way. In the terminal settings change new-line receive to AUTO and transmit to LF. 
+## Tera term
+To view the output this example you need to have tera term installed. Tera term can be downloaded from this [link](https://osdn.net/projects/ttssh2/releases/). Once there download and install the latest version. 
 
-### MBED online compiler.
+## Tera tern setup
+When you start tera term you need to change a couple of settings for the terminal so that the output presents itself in a nice way. In the terminal settings change new-line receive to AUTO and transmit to LF. 
 
-In order to import this project simply follow the link https://os.mbed.com/compiler/#import:https://github.com/AlbinMartinsson/arrowhead_stm32_demo
+## MBED online compiler.
 
-### Configuration
-In mbeb_app.json enter your wifi credentials. In main.cpp modify the address to your local arrowhead cloud and change the address from "localhost" to the addresses of the provider and consumer you want to use.
+Create an account on [ARMmbed](https://ide.mbed.com/compiler/) and import the project from github.
 
-### Expected output 
-This example can be run as is without the last part that connects and posts the temperature to the provider. Comment out this part if you dont have a server. The output of the example is the response body from the orchestration, containing the information of the provider. That address will also be parsed and used to connect to the provider.
+Make sure that when selecting device to compile to you select B-L475E-IOT01A, even if you have B-L4S5I-IOT01A otherwise the example will not compile.
 
-### Flask app
-If you want to try to post from to the board to the provider found in the orchestration you can to this by running a very simple flask app. You can start the flaskapp.py but you need to edit run configuration to run on 0.0.0.0 and the port specified in your service registry.
+In order to import this project into your MBED online compiler simply follow this [link](https://os.mbed.com/compiler/#import:https://github.com/AlbinMartinsson/arrowhead_stm32_demo). 
+
+
+# Configuration
+
+## mbed_app.json
+In this file you have to change the wifi credentials, add your SSID and password. 
+
+## main.cpp
+Here you have to change the address on all calls from localhost to the IP-address of your local arrowhead cloud. You also have to change the address of your provider and consumer body to match this. The provider address should be the same as your arrowhead cloud and the consumer should be the address of your stm32 board. Take not of which port you define to the provider as you will use it in your flask app.
+
+## <span>flaskapp.p</span>y
+Make sure that the port matches the port of the provier system in main.cpp and that the address is set to 0.0.0.0 to allow external communication. 
+
+# Complilation and running
+
+## flask app
+Start the flask app with the run configurations specified in the previous section.
+
+## mbed compiler
+Do the changes in the previous section and hit compile or ctrl+b to compile the project. This will download a .bin file. To run that .bin file on your board simply drag it to the board in the explorer. As if you were putting a file on a flash drive. 
+
+## Expected output and result
+What this demo does is:
+* Register a provider system to the service registry.
+* Register a consumer system to the service registry.
+* Register a service to the service registry.
+* Creates an intra cloud authorization rule.
+* Creates an orchestrator store entry.
+* Uses the id of the consumer to find an appropriate consumer.
+* Based on the response from the orchestration gets the url to the provider and sends the temperature as a json to it. 
+
+# Future work and modifications.
+
+## Secure mode
+
+## Continuously provide temperature data.
+
+## Datalogger
+
+
 
