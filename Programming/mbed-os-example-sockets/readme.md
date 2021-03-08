@@ -8,7 +8,7 @@ You need a local arrowhead cloud with all core services running insecure mode in
 Go to eclipse arrowheads [github](https://github.com/eclipse-arrowhead/core-java-spring) for information on that.
 
 ## ST-Link drivers
-You need to install the ST-link drivers from [here](https://www.st.com/content/st_com/en/products/development-tools/software-development-tools/stm32-software-development-tools/stm32-utilities/stsw-link009.html.) In order to download you have to have an ST account. Download the file, unzip and install the version approriate to your system. To check that it works plug in your st-device and make sure it pops up as a unit on your computer.
+You need to install the ST-link drivers from [here](https://www.st.com/content/st_com/en/products/development-tools/software-development-tools/stm32-software-development-tools/stm32-utilities/stsw-link009.html). In order to download you have to have an ST account. Download the file, unzip and install the version approriate to your system. To check that it works plug in your st-device and make sure it appears as a unit on your computer.
 
 ## Tera term
 To view the output this example you need to have tera term installed. Tera term can be downloaded from this [link](https://osdn.net/projects/ttssh2/releases/). Once there download and install the latest version. 
@@ -31,7 +31,7 @@ In order to import this project into your MBED online compiler simply follow thi
 In this file you have to change the wifi credentials, add your SSID and password. 
 
 ## main.cpp
-Here you have to change the address on all calls from localhost to the IP-address of your local arrowhead cloud. You also have to change the address of your provider and consumer body to match this. The provider address should be the same as your arrowhead cloud and the consumer should be the address of your stm32 board. Take not of which port you define to the provider as you will use it in your flask app.
+Here you have to change the address on all calls from localhost to the IP-address of your local arrowhead cloud. You also have to change the address of your provider and consumer body to match this. The provider address should be the same as your arrowhead cloud and the consumer should be the address of your stm32 board. Take note of which port you define to the provider as you will use it in your flask app.
 
 ## <span>flaskapp.p</span>y
 Make sure that the port matches the port of the provier system in main.cpp and that the address is set to 0.0.0.0 to allow external communication. 
@@ -42,7 +42,7 @@ Make sure that the port matches the port of the provier system in main.cpp and t
 Start the flask app with the run configurations specified in the previous section.
 
 ## mbed compiler
-Do the changes in the previous section and hit compile or ctrl+b to compile the project. This will download a .bin file. To run that .bin file on your board simply drag it to the board in the explorer. As if you were putting a file on a flash drive. 
+Do the changes in the previous section and hit ctrl+b to compile the project. This will download a .bin file. To run that .bin file on your board simply drag it to the board in the explorer. As if you were putting a file on a flash drive. 
 
 ## Expected output and result
 What this demo does is:
@@ -57,10 +57,12 @@ What this demo does is:
 # Future work and modifications.
 
 ## Secure mode
+This example needs to implement HTTPS some time in the future. There is support in this library for HTTPS.
 
 ## Continuously provide temperature data.
+Right now the temperature is only posted once, to make this somewhat useful it should post continuously.
 
-## Datalogger
-
+## Data logger
+A nice way to present the temperature data would be very useful.
 
 
