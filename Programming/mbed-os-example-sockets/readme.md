@@ -3,7 +3,7 @@
 # Prerequisites 
 
 ## Arrowhead local cloud in insecure mode.
-You need a local arrowhead cloud with all core services running insecure mode in order to run this example. 
+You need a local arrowhead cloud with all core services running insecure mode in order to run this example. For this example I used the compile code option to install arrowhead. To disable secure make sure to edit the ssl.enabled = true to false in all the core systems, i.e. service registry, authorization and orchestrator, application.properties file. That file is located in the target folder of each individual core system. 
 
 Go to eclipse arrowheads [github](https://github.com/eclipse-arrowhead/core-java-spring) for information on that.
 
@@ -57,7 +57,7 @@ What this demo does is:
 # Future work and modifications.
 
 ## Secure mode
-This example needs to implement HTTPS some time in the future. There is support in this library for HTTPS.
+This example needs to implement HTTPS some time in the future. There is support in this library for HTTPS. I have had issues with the certificates and the format of those.
 
 ## Continuously provide temperature data.
 Right now the temperature is only posted once, to make this somewhat useful it should post continuously.
