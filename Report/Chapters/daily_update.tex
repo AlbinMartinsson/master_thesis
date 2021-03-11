@@ -1,0 +1,220 @@
+\section{Daily updates full text}
+ 
+\subsection{January}
+Hello Jan,
+I have been working on the demo today and it turned out to be very difficult to get it to run. I am on the final steps which requires you to create an amazon bucket to 
+store the update. The demo itself is used to  introduce OTA (over the air) update. So yesterday when i thought I just had to generate a certificate was an under statement. 
+Today I have managed to build the demo and 
+launch it on the board but I still have to configure the AWS iot console in order to see what is being sent back and forth. I will do this tomorrow. 
+
+Hello Jan,
+I thought I would go into a little more detail about what I have been doing yesterday and today. Yesterday in the afternoon I played around 
+with different sensors and tried to get
+them to display using the wifi_HTTP_server. I got that to work fairly easily with the humidity sensor as shown here.I read some documentation and the sensors works more or 
+less the 
+same and I was able to use a demo for the older board to figure out how to access them.
+Quite fun actually.
+Today I been getting this aws demo to work https://medium.com/@jankammerath/aws-iot-hands-on-a-practical-tutorial-db8896da530, it uses the mbed online compiler to build the binary 
+(No more issues with local machines). So that might be a good idea to use in 
+the course as it would serve as a demonstration on how certificates work. That example sends an MQTT-message with temperature, 
+humidity and pressure. With the experience gained from playing arund with the sensors I would like to see if 
+I could add more data to the AWS. I've managed to save the data as a json in a s3 bucket as seen here.
+I will play around with more interesting ways to present the data. And I suggest that is what I work on the first days on next week. Sounds good?
+
+Hello Jan,
+I've managed to figure out which topic to subscribe to in the IoT test to see sensor data, it is stm32/sensor. 
+I have also managed to publish to the board and when a publish in completed the light LED2 turns on.
+Here is a screenshot of a successful publish to the board.
+
+Hello Jan,
+You can now turn on and off  the led by publishing to the topic stm32/action. The program looks for the substring "on" or "off" so your message can look however you like
+as long as it contains one of those substring. I went with:
+{
+       "action": "turn on"
+}
+or
+{
+       "action": "turn off"
+}
+for clarity.
+To import my new repo into MBEB use https://os.mbed.com/compiler/#import:https://github.com/AlbinMartinsson/L475VG-IOT01A-Mbed-AWS-IoT
+and my suggestion when importing it to name something different than L475VG-IOT01A-Mbed-AWS-IoTperhaps IoTNodeDemo or something like that. 
+That way you can keep the old project and
+copy the config files mbed_app.json and core/MQTT_server_setting.h and replace them in the new project (so you don't have to do the config all over again).
+
+\subsection{February}
+
+Hello Jan,
+Today I have been focusing on writing the problem definition in the report in order to have a
+clear objective of what my thesis should be about. I have written that and pushed it to github, would appreciate some feedback on it. I also 
+started looking for reading material for my literature review and started reading up on some of it in order to write the background.
+Tomorrow I will start to write the background and motivation once I find some more good reports to
+read. If time allows find some methods for comparing the two communication paradigms different properties.
+
+Hello Jan,
+Today I have read up on the wolfSSL library to implement HTTPS, I have tried to build some examples but it was quite complicated. 
+I decided to give the implementation a rest for the day and focus on learning more about SSL/TLS and Diffie Hellman. I found three videos from computerphile that 
+I thought was very good.
+TLS: https://www.youtube.com/watch?v=0TLDTodL7Lc
+TLS handshake: https://www.youtube.com/watch?v=86cQJ0MMses
+Diffie Hellman: https://www.youtube.com/watch?v=NmM9HA2MQGI
+Internet security is not my strongest side so felt good to have a bit of crash course in the subject.
+Tomorrow I will keep working on the wolfSSL STM32CUBE integration (it is a partnered collaboration hence why I chose that library).
+I would like some help on how to do my literature review and implementation review, as I am not really sure on where to start. 
+
+Hello Jan,
+Today I sat with the wolfSSL cubemx package for the board, managed to build a project and tried some things out. I  installed and launched a local arrowhead 
+cloud and generated some certificates for my client. I tried to make a HTTPS get to the ECHO endpoint just to try and get some response to my board, with no success.
+I did find an example from wolfSSL which i got to run and they have some benchmark programs I tried to run, I also tried to understand the code for 
+establishing a TLS socket connection, which turn out to be really hard. All in all a long and productive day, tomorrow I will try to send a HTTPS get to my service registry.
+
+Hello Jan,
+On friday (forgot to send you an update) I looked at some certificate buffer forum entries and managed to figure how to pass them into wolfSSL. 
+I also started to look into socket connections and how to format the JSON:s containing the information to the SR in a meaningful way. 
+I am thinking we will go the header file config route and define everything there and parse it to the correct format.
+Today i read up on the security chip and tried to figure out how the wolfSSL library works. I think I am getting somewhere now at least. 
+I am able to try to verify a certificate but keep getting a "setting public key error" when trying to use a arrowhead certificate. 
+I am not sure what this means but it might have something to do with that the certificates are self-signed, will look more into this tomorrow. 
+
+Hello Jan,
+Today I have read upon sockets and how to use them, trying to find a nice way to make a post to the service registry and writing down the steps for recreating 
+the loading of the certificate buffer. This together with my wolfSSLtest project will be pushed to git tomorrow morning when I am done with the documentation 
+of all the steps
+
+Hello Jan,
+Today I got the ssl verification to work after some rather tedious hours in front of the keyboard. You had to create and format a buffer 
+from a certificate file, a buffer containing a formatted .pem file in order for it to verify itself. Now when that big hassle is out 
+of the way I will start tomorrow to get the sockets up and running and hopefully make a successful  HTTPS post by the end of the week.
+
+Hello Jan,
+Today I have read upon sockets and how to use them, trying to find a nice way to make a post to the service registry and writing down the steps for 
+recreating the loading of the certificate buffer. This together with my wolfSSLtest project will be pushed to git tomorrow morning when I am done 
+with the documentation of all the steps. 
+
+Hello Jan,
+Today I have been trying to get the wifi module to work with the wolfSSL code, to little success I might add. I have been able to build and run my new project but 
+when it is supposed to initialize the wifi nothing happens. My suspicion is that i have somehow entered a infinite include loop, where the header files and defined over 
+and over again. I will spend tomorrow figuring this out. After that the matter of posting to the service regisrty should be straight forward.
+
+Hello Jan,
+After yesterday successful build of the wolfSSL and wifi project I was super exited to get started today. 
+I ran into some issues right away, I managed to build everything that was part of the init of the wolfSSL library but as 
+soon as I started to add other feature, namely the wolfssl_write() and connect(), I got strange build errors. All of a sudden 
+it could not find files, files that have not been an issue earlier. I tried to remove these files from the build path but then the 
+issue just jumped to another file. And so on and so on. I found one example using the mbed online compiler using tls-sockets as part of the 
+mbed-os. https://github.com/ARMmbed/mbed-os-example-sockets. It worked and I am able to start the connecting to the service registry. The 
+certificate verifacation passes, but I run in to some issues when trying to send the GET request. Will work more on that on monday.
+
+Hello Jan,
+Today I have continued to work on the MBED  tls-socket example. I got it to run with their example site and certificate. I managed to 
+load my client certificate in but when the processing of that certificated started I ran into some problems. I got an error saying 
+that the certificate could not be verified, from the server side, which has to do with the certificates that arrowhead uses are self-signed.
+I tried a bunch of different settings but the mbedtls library requires verification. I will try again tomorrow to tackle this issue. To keep 
+myself motivated I put HTTPS on the shelv for a couple of hours and started to try and POST and GET from the service registry. It was a bit 
+more complicated to create HTTP headers in C than I expected but I am well on my way with that. Will also start looking into how to to create json in C. 
+
+Hello Jan,
+Today I continued to work on the POST and GETS to the service regisrty, authorization and orchestrator. 
+I can now register a provider and a consumer, add authorization a orchestrate the services. I still have to to 
+some parsing to find out the ids of all the services and so on. But if I hardcode the ids, just to see that it 
+works I am now able to send the temperature data from the board to a local flask server running on my computer. 
+Tomorrow I will do a lot of clean up and try to get the parsing down so that the application becomes more dynamic.
+
+Hello Jan,
+Great day today as well, did alot (and i mean ALOT) of refactoring and clean up today. I made functions for everything and reduced my main.cpp by roughly 200 lines. 
+I had some issues with memory allocation when trying to attach my sensor data to the post string. But that is fixed now and done by the book. I will be in Luleå tomorrow
+because they are cleaning out my old apartment, do you want to have a quick meeting to check in on my progress?
+Tomorrow I will work with the parsing of the response from the orchestrator so it becomes dynamic and push all of this to git so that you can try it out on your own.
+
+Good evening Jan,
+Today I continued to work on parsing the responses to find the id:s for the different systems, it went really well and I can now find all the necessary id:s 
+to post to the orchestrator and authorization. Tomorrow I will work with actually sending the request to the orchestrator and authorization and if that works out 
+start working on documenting my progress so far.
+
+Hello Jan,
+Yesterday I managed to register everything and get a response from the orchestrator without using hardcoded id´s. I also started working on parsing the response 
+from the orchestrator so that I can send the temperature to my consumer. So today I will get that going and try to start on the documentation of everything.
+
+Hello Jan,
+Today I finished up the more dynamic version of the code so now I can register everything and get a response from the orchestrator without hardcoding anything.
+I also did a mayor refactoring of the, removing unnecessary functions, chunked together duplicate code in to functions and wrote comments for almost every function.  
+
+Hello Jan,
+Today I runned in to some issues with the code when trying to refactor the last part, the issue was with my GET method which had some errors in it. But now everything
+is working fine and is refactored. On monday I will try to rite a guide on how to use my code and would like it if you could give it a try then. I will also to one 
+more test round with HTPPS on monday to see if I still get the same errors then.
+
+\subsection{March}
+Hello Jan,
+Today I have been working on trying to document my example so that you could try to run it tomorrow. I have also done quite a bit of refactoring and pushed it to git.
+Will have done some more documentation before our meeting tomorrow. I also read and treid to understand how a CA works but it is still quite unclear to me how everything
+works. Talk to you tomorrow.
+
+Hello Jan,
+Today I have been working on the certificates and HTTPS again with no success. I have been reading up a lot more on how the TLSSocket class actually works and ways to make
+it do what I want. I have read the thing Mario sent yesterday and tried it out, but unfortunately it didnt work right out of the box. To get some better error codes and to
+really know where the program breaks I installed wireshark to track the packets. It provided some usefull information that I will use tomorrow. I guess tomorrow I will try
+a couple of more things, the error I am stuck on right now is a "unknown CA" error, so will read up a bit more tomorrow on what that means exactly. 
+
+Hello Jan,
+Today I have been struggling with the HTTPS again, tried the thing Mario sent yesterday with no success. I tried all kinds of certificates and settings. I installed the
+certificates on my computer in order to try and trusted but I am still getting the error "unknown CA". I think I will focus on the documentation of the parts that are
+actually working tomorrow. I have a friend that has worked with security on Ericsson that will help me out either tomorrow or on Monday. Otherwise I am not really sure
+what do to.
+
+Hello Jan,
+Today I have been trying to add inter cloud authorization, so I have installed the active MQ relay on my laptop and a VM and I am trying to conf those right.
+I have installed a windows VM to try out my process for installing step by step and being able to document that properly. I also added support for parsing out
+the service URI from the orchestrator response. I am thinking about trying to break up the code a little bit by having maybe an "admin" part that has access
+to all the /mgmt stuff. A client provider and consumer that only has access to the client end points, this in order not to have to rewrite everything once the
+https work. Client certificates does no have access to the /mgmt endpoints.
+
+Hello Jan,
+Today i have been trying to recreate the process of setting up my demo on a virtual machine in order to document every step. I have written the basic outline
+for this process in https://github.com/AlbinMartinsson/master_thesis/blob/main/Programming/mbed-os-example-sockets/readme.md. I will give one of my friends
+a board on friday for him to try out this process without me telling him what to do, if that works I am quite happy. Tomorrow I will get some help from my
+friend Jonathan who is really good at security to get HTTPS up and running. I would like to get started on the report, but not sure where and how. Perhaps
+we can discuss that on tomorrows meeting?
+
+\section{Daily updates edited}
+
+\subsection{January}
+
+\begin{itemize}
+    \item AWS (OTA), from stm32.
+    \item WIFI http-server.
+    \item https://medium.com/@jankammerath/aws-iot-hands-on-a-practical-tutorial-db8896da530
+    \item AWS demo working.
+    \item MQTT sends temperature, humidity and pressure to AWS IOT console.
+    \item Added data to s3 bucket.
+    \item Managed to publish to topic.
+    \item Managed to turn on and off LED using AWS and MQTT.
+\end{itemize}
+
+\subsection{February}
+
+\begin{itemize}
+       \item Problem definition first draft. 
+       \item Report draft and compilation.
+       \item WOLFSSL issues, choosing of http library.
+       \item TLS crash course.
+       \item Certificate formatting and issues.
+       \item Sockets.
+       \item Arrowhead.
+       \item Certificate formatting.
+       \item Creating manual HTTP headers. mbed sockets example.
+       \item Parsing responses.
+       \item Refactoring.
+       \item Flask app, using mbed-hhtp.
+       \item Refactoring.
+       \item mbed-http
+\end{itemize}
+
+\subsection{March}
+
+\begin{itemize}
+       \item Certificates (again)
+       \item Refactoring.
+       \item Literature review
+       \item Thesis writing.
+\end{itemize}
