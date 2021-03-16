@@ -2,26 +2,13 @@
 The number of devices connected to the Internet has risen from 7 billions in 2018 to an estimated 35 billions in 2021 according to Security Today and that number is only going to increase.[1] %https://securitytoday.com/Articles/2020/01/13/The-IoT-Rundown-for-2020.aspx?Page=2%. 
 \section{Motivation}
 With the numbers of devices connected to the Internet, IOT-devices from now on, rising to an estimated 38.6 billion devices world wide by 2025 the need to enable communication between those devices have never been bigger.
-\section{Problem definition [OLD]}
-
-%%%%%%%%%%%%%%%%%%%%% OLD ONE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-This project aims to investigate the difference between either 
-using a central broker or using peer to peer to handle the communication 
-between devices in terms of latency, energy consumption, robustness and
-security. 
-
-This project also aims to investigate the possibilities and benefits of 
-late binding, i.e. a name is associated
-with a particular operation or object at runtime instead of during 
-compilation, in combination with hardware generated certificates  
-in order to mitigate some of the security  issues associated with 
-IoT devices.
-
-\section{Problem definition [NEW]}
-This project aims to investigate the possibilities, benefits and limitations of using Eclipse Arrowhead framework on embedded devices in contrast to commercially available solutions such 
+\section{Problem definition}
+This project aims to investigate the possibilities, benefits and 
+limitations of using Arrowhead Framework on embedded devices
+in contrast to commercially available solutions such 
 as Amazons Amazon Web Services, AWS 
 from now on, and Microsofts Azure.  
-This project also aims to investigate the difference between either 
+The way to measure the difference between either 
 using a central broker, the MQTT protocol used by AWS and Azure or using peer to peer, 
 HTTP protocol used by the Arrowhead framework to handle the communication between devices in terms of latency, 
 energy consumption and
