@@ -3,6 +3,15 @@
 \section{Related work}
 
 \subsection{Internet of things}
+<<<<<<< HEAD
+
+\subsection{Industry 4.0}
+%Industry 4.0 definition
+Lasi argues that the term Industry 4.0 was coined beforehand as a planned fourth industrial revolution \cite{lasi}.
+The use of internet of things devices, IoT-devices from now on, and cyber physical systems, CPS from now on is what defines the fourth industrial revolution Vadiya means \cite{Vadiya}.
+See figure x for a short historic overview of previous industrial revolutions.
+According to Vadiya, Industry 4.0 promotes the connection of sensors and devices both to the internet and to other sensors or devices.
+=======
 Rob van Kranenburg defines IoT as:
 \begin{quote}
     a dynamic global network infrastructure with self-configuring capabilites based on standard and interoperable communcation protocols where physical and virutal 'Things' have identites, physical attributes, and virtual parsonalites and use intelligent interfaces, and are seamlessly integrated into the information netork.  
@@ -23,6 +32,7 @@ See figure x for a short historic overview of previous industrial revolutions.
 According to Vadiya \cite{Vaidya2018} industry 4.0 promotes the connection of sensors and devices both to the internet and to other sensors or devices.
 
 %Intelligent  sensors.
+>>>>>>> upstream/main
 
 Hozdić \cite{Hozdic2015} states that a sensor is a device capable of providing an appropriate output in response to a measured value.
 One key feature of intelligent sensor is that in order to increase the level of information proeccesing it processes the information at a logical level Hozdić \cite{Hozdic2015} argues.
