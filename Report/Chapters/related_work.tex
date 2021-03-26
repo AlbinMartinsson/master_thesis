@@ -1,8 +1,15 @@
 \section{Related work}
 \subsection{Internet of things}
-Rob van Kranenburg defines IoT as:
+Cluster of European research projects \cite{Gubbi2013}  regarding the Internet of Things:
 \begin{quote}
-    a dynamic global network infrastructure with self-configuring capabilites based on standard and interoperable communcation protocols where physical and virutal 'Things' have identites, physical attributes, and virtual parsonalites and use intelligent interfaces, and are seamlessly integrated into the information netork.  
+    'Things' are active participants in buissness, information and social processes where they are enabled to interact and communicate aming themselves and with the enviorment by exhchanging data and information sensed about the envoirment while reacting autonomously to real/physical world events and influencing it by runnign processes that trigger actions and create services with or without direct human intervention.
+%Fix correct qoute on this!
+\end{quote} 
+
+Gubbi et. al. \cite{Gubbi2013} defines the Internet of Things as:
+\begin{quote}
+    Interconnection of sensing and actuating devices providing the ability to share inforamtion across platforms through a unified framework, developing a common operating picture for enabling innovative applications. 
+    This is achieved by seamless large scale sensing, data analytics and information representation using cutting egde ubiquitous sensing and cloud computing.
 \end{quote}
 
 \subsection{Industry 4.0}
@@ -109,8 +116,23 @@ Noor argues that conventional cryptographic primativs are unsuitable for IoT dev
 With IoT devices lacking capabilites as background Noor, Meneghello and Zhang all aggree that a push for lightweight cryptography is required in order to ensure secruity of these devices. \cite{Noor2019,Meneghello2019,Zhang2014} 
 
 \subsection{Communication} 
-
-
 %MQTT
+MQTT, Message Queue Telemetry Transport, is a lightweight messaging invented by IBM suitable for IoT Wukkadada means \cite{Wukkadada2018}. 
+MQTT is a publish/subscribe protocol that requires a minimal footprint and bandwidth to connect an IoT device according to HIVEMQ. \cite{MQTT2021}
+MQTT consists of a MQTT broker and MQTT clients, where the broker is responsible for sending messages between the sender and its recipients. 
+A client on the other hand publishes a message to the broker that other clients can subscribe to HIVEMQ adds. \cite{MQTT2021}
 
 %HTTP/HTTPS
+HTTP, HyperText Transfer Protocol, is a request/response protocol consisting of clients and servers that communicate by exchanging indidivual messages. 
+The clients are responsible for the requests and the servers are responsible for the response Mozilla developer network clarifies. \cite{HTTP2021} 
+In contrast to the lightweight MQTT protocol with low overhead and bandwidth, HTTP can cause serious banwidth issues Wukkadada adds. \cite{Wukkadada2018}
+The biggest benefits to using HTTP is that it supports the RESTful Web architecture and that it is a globally accepted web messaging standard Naik suggests. \cite{Naik2017} 
+
+%Comparisson 
+Naik argues that HTTP exceeds MQTT in message size, message overload, power consumption, resource requirment, bandwidth and latency. 
+All things that are considered negative for a protocol. \cite{Naik2017}
+On the other hand HTTP exceeds MQTT in interoperability, standardization, security and provisioning Naik adds. \cite{Naik2017}
+All things that are considered positive for a protocol.
+Shariatzadeh argues that that HTTP may be expansive for many IoT devices but it can be benfical due to the interoperability since it is developed for the web originally. \cite{Shariatzadeh2016}
+Wukkadada also points out the lower power consumption of the MQTT protocol but adds that the more verbose HTTP protocol can be easier for developers to understand. \cite{Wukkadada2018}
+Wukkada drives the point home of choosing MQTT for IoT devices. \cite{Wukkadada2018}
