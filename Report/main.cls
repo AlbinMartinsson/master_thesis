@@ -301,7 +301,7 @@
  \fancyhead[LO]{}
  \fancyhead[LE]{\thepage} 
  \fancyhead[RO]{\thepage}
- \cleardoublepage
+ %\cleardoublepage
 }
 
 % ------------------------------------------
@@ -341,7 +341,7 @@
    \renewcommand{\thefigure}{\arabic{chapter}.\arabic{figure}}
    \renewcommand{\thetable}{\arabic{chapter}.\arabic{table}}
 
-   \cleardoublepage
+   %\cleardoublepage
    \thispagestyle{plain}
    \chapter[#3]{#4}
    
@@ -368,7 +368,7 @@
    \fancyhead[LO]{}
    \fancyhead[LE]{\thepage} 
    \fancyhead[RO]{\thepage}
-   \cleardoublepage
+   %\cleardoublepage
    \thispagestyle{plain}
    \chapter[\space]{#2}
    \vspace{25mm}
@@ -376,7 +376,7 @@
    \vspace{10mm} \\ \noindent \textbf{Reformatted version of paper
     originally published in:} \\ #4
    \vspace{15mm} \\ \noindent{\copyright} #5
-   \cleardoublepage
+   %\cleardoublepage
    \fancyhf{}
    \fancyhead[RE]{\sc{\nouppercase{#1}}}
    \fancyhead[LO]{\sc{\nouppercase{\rightmark}}}
@@ -394,7 +394,7 @@
    \fancyhead[LO]{}
    \fancyhead[LE]{\thepage} 
    \fancyhead[RO]{\thepage}
-   \cleardoublepage
+   %\cleardoublepage
    \thispagestyle{plain}
    \chapter[\space]{#2}
    \vspace{25mm}
@@ -402,7 +402,7 @@
    \vspace{10mm} \\ \noindent \textbf{Reformatted version of paper
     accepted for publication in:} \\ #4
    \vspace{15mm} \\ \noindent{\copyright} #5
-   \cleardoublepage
+   %\cleardoublepage
    \fancyhf{}
    \fancyhead[RE]{\sc{\nouppercase{#1}}}
    \fancyhead[LO]{\sc{\nouppercase{\rightmark}}}
@@ -420,7 +420,7 @@
    \fancyhead[LO]{}
    \fancyhead[LE]{\thepage} 
    \fancyhead[RO]{\thepage}
-   \cleardoublepage
+   %\cleardoublepage
    \thispagestyle{plain}
    \chapter[\space]{#2}
    \vspace{25mm}
@@ -428,7 +428,7 @@
    \vspace{10mm} \\ \noindent \textbf{Reformatted version of paper
     submitted to:} \\ #4
    \vspace{15mm} \\ \noindent{\copyright} #5
-   \cleardoublepage
+   %\cleardoublepage
    \fancyhf{}
    \fancyhead[RE]{\sc{\nouppercase{#1}}}
    \fancyhead[LO]{\sc{\nouppercase{\rightmark}}}
@@ -446,13 +446,13 @@
    \fancyhead[LO]{}
    \fancyhead[LE]{\thepage} 
    \fancyhead[RO]{\thepage}
-   \cleardoublepage
+   %\cleardoublepage
    \thispagestyle{plain}
    \chapter[\space]{#2}
    \vspace{25mm}
    \textbf{Authors:}\\ #3
    \vspace{10mm} \\ \noindent \textbf{To be submitted.} \\
-   \cleardoublepage
+   %\cleardoublepage
    \fancyhf{}
    \fancyhead[RE]{\sc{\nouppercase{#1}}}
    \fancyhead[LO]{\sc{\nouppercase{\rightmark}}}
@@ -488,7 +488,7 @@
 % ------------------------------------------
 \renewcommand{\appendix}%
 {
-  \cleardoublepage%
+  %\cleardoublepage%
   \setcounter{section}{0} 
   % ------------------------------------------
   % Adjust section headings
