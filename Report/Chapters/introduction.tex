@@ -1,58 +1,55 @@
 %Intro to intro
-The use of IoT-devices in large scale industries is a fairly new and intresting area of research. 
-This thesis will take a look at the opportunity and possibility to connect your embedded IoT-devices to a local arrowhead framework cloud.
-This project will use the STM32 B-L4S5I-IOT01A IoT discovery node as development board, running the Mbed-OS 6. 
-
+This thesis will take a look at the opportunity and possibility to connect your embedded IoT devices to a local arrowhead framework cloud.
+This project will use the STM32 B-L4S5I-IOT01A IoT discovery node as a development board, running the Mbed-OS 6. 
 \section{Background}
 %What is there now?
 The Arrowhead framework contains a lot of examples in an array of different languages and technologies mainly java, the language the framework is developed in. 
-Python, C\# and C++ have client libraries and example code developed for them, which can be found on the projects github page\cite{Github2021} 
+Python, C\#, and C++ have client libraries and example code developed for them, which can be found on the project's GitHub page.\cite{Github2021} 
 %What is needed?
-However, there is no client library or code example for a specific piece of hardware with the intention of making the connection to a local arrowhead cloud fast and easy. 
-This thesis will examine the possibilities of having a ready made example for to compile and run that enables connection to a local arrowhead cloud as a proof of concept. 
+However, there is no client library or code example for a specific piece of hardware to make the connection to a local arrowhead cloud fast and easy. 
+This thesis will examine the possibilities of having a ready-made example to compile and run that enables connection to a local arrowhead cloud as a proof of concept. 
 Much like the 'Hello world' examples from Amazon Web Services and Microsoft Azure. 
 
 \section{Motivation}
-With the numbers of devices connected to the Internet, IOT-devices from now on, rising to an estimated 38.6 billion devices world wide by 2025 the need to enable communication between those devices have never been bigger.
-
+With the numbers of devices connected to the Internet, IoT-devices from now on, rising to an estimated 38.6 billion devices worldwide by 2025 the need to enable communication between those devices has never been bigger.
 \section{Problem definition}
 %This is good, if deleting the other paragraph expand this.
-This project aims to investigate the possibilities, benefits and limitations of using Eclipse Arrowhead framework on embedded devices in contrast to commercially available solutions such
-as Amazons Amazon Web Services and Microsofts Azure. 
+This project aims to investigate the possibilities, benefits, and limitations of using the Eclipse Arrowhead framework on embedded devices in contrast to commercially available solutions such
+as Amazon's Amazon Web Services and Microsoft Azure. 
 %Maybe remove, how to measure?? 
 The way to measure the difference between either 
 using a central broker, the MQTT protocol used by AWS and Azure or using peer to peer, 
-HTTP protocol used by the Arrowhead framework to handle the communication between devices in terms of latency, 
+The HTTP protocol used by the Arrowhead framework to handle the communication between devices in terms of latency, 
 energy consumption and
 security.
 \section{Equality and ethics}
-The ability to own and control your data are becoming more and more rare these days with giant corporations establishing their own cloud services.
-You as a consumer always takes a risk when pushing sensitive data the a cloud owned by someone else, the right to own your data should not have to be infringed upon. 
-The arrowhead framework and the use of local clouds moves the storage of your personal data from giant corporations to your own. 
+The ability to own and control your data is becoming rarer and rarer these days with giant corporations establishing their cloud services.
+You as a consumer always take a risk when pushing sensitive data to a cloud owned by someone else, the right to own your data should not have to be infringed upon. 
+The arrowhead framework and the use of local clouds move the storage of your data from giant corporations to your own.
 \section{Sustainability}
-The use of small embeded devices instead of monolithic machines used by the industry today provides a much needed decrease in energy consumption for larger industries.
-The use of IoT-devices would also in greater scale enable preventive maintinence of components, reducing both the cost and materials required for maintinence later on.
+The use of small embedded devices instead of monolithic machines used by the industry today provides a much-needed decrease in energy consumption for larger industries.
+The use of IoT devices would also on a greater scale enable preventive maintenance of components, reducing both the cost and materials required for maintenance later on.
 \section{Delimitations}
 \subsection{Security}
 %Expand
-This thesis will not cover a solution to the numerous secruity risks and issues associated with IoT-devices. 
+This thesis does not cover a solution to the numerous security risks and issues associated with IoT devices. 
 \subsection{Core systems}
 %Expand
-This thesis will also only cover the three core systems of the Eclipse Arrowhead framework, which are the service registry, authorization and orchestrator. 
-The STM32 B-L4S5I-IOT01A IoT discovery node will not host the Arrowhead framework on the board itself, due to the fact that the Arrowhead framework is to resource heavy for such a small device.
+This thesis will also only cover the three core systems of the Eclipse Arrowhead framework, which are the service registry, authorization, and orchestrator. 
+The STM32 B-L4S5I-IOT01A IoT discovery node will not host the Arrowhead framework on the board itself, since the Arrowhead framework is too resource-heavy for such a small device.
 The board will instead connect to a local Arrowhead cloud hosted by another computer in the same network. 
 \subsection{Intracloud connection}
 %Expand
 It will also only cover connection within the same local arrowhead cloud, intracloud, as opposed to using multiple clouds, intercloud.
-Intercloud connection requires two more Arrowhead systems, gateway and gatekeeper, in order to operate and the configuration of those systems is beyond the scope of this thesis.
+Intercloud connection requires two more Arrowhead systems, gateway, and gatekeeper, to operate and the configuration of those systems is beyond the scope of this thesis.
 \section{Thesis structure}
-In chapter 2 related work is presented, a literature review of IoT, Industry 4.0, security and the Eclipse Arrowhead framework is conducted. 
+In chapter 2 related work is presented, a literature review of IoT, Industry 4.0, security, and the Eclipse Arrowhead framework is conducted. 
 
-In chapter 3 theory is covered, describing what scientific methods where used in this thesis. 
+In chapter 3 theory is covered, describing what scientific methods were used in this thesis. 
 
 Chapter 4 covers implementation, describing how the different systems used in this thesis uses are designed from a software engineering perspective.
 
-In chapter 5 an evalution of the experimet conducted will be performed. 
+In chapter 5 an evaluation of the experiment conducted will be performed. 
 
 Chapter 7 presents the conclusion of the work done in this thesis. The chapter also describes how to further investigate the questions raised in this thesis. 
 
