@@ -76,6 +76,9 @@
 \RequirePackage{amssymb}
 \RequirePackage{ifthen}
 \RequirePackage[sectionbib]{bibunits}
+\RequirePackage{listings}
+\RequirePackage{xcolor}
+\RequirePackage{float}
 \usepackage[utf8]{inputenc}
 %\RequirePackage[latin1]{inputenc}
 \RequirePackage{titletoc}
@@ -83,6 +86,8 @@
 % ******************************************************
 % Start defining and redefining old book style stuff
 % ******************************************************
+
+
 
 \setlength{\topmargin}{0in}
 \setlength{\textwidth}{6.25in}

@@ -1,9 +1,96 @@
-\section{Implementation}
 %overview
 The system consists of three major parts, the consumer on the stm32 board, a Python flask app as a provider, and the arrowhead framework.
 The main objective of the arrowhead framework is to connect the consumer and the provider in a safe and structured way.
 The consumer is built with C/C++ using ARMs' mbed os, and mainly the mbed-http library. 
 
-\subsection{System architecture}
+\section{System architecture}
+\subsection{Sequence of execution}
+Since the core systems is dependent on each other, the order of execution of the queries to the database matters a lot.
+To have the board act as a part of an arrowhead system and registering that to the local cloud the following order of execution has to be used.
+\begin{itemize}
+    \item Register provider.
+    \item Register consumer.
+    \item Register a service definition.
+    \item Add intracloud authorization rules.
+    \item Create an orchestration store entry.
+    \item Recieve orchestration information based on consumer ID.
+\end{itemize}
 
-\subsection{System component}
+All these calls are made to the appropriate core system using HTTP post and get methods and implement the mbed-HTTP library.
+\subsection{HTTP post using the mbeb-http library}
+The first function performs a HTTP post with a constructed JSON body as payload.
+It does that with the help of the network interface object defined in the setup and sends that post to the appropriate URL.
+\begin{lstlisting}[style=CStyle]
+    std::string http_post_request_with_response(NetworkInterface* _net, std::string url, std::string body)
+    {
+        HttpRequest *post_request = new HttpRequest(_net, HTTP_POST, url.c_str());
+        post_request->set_header("Content-Type", "application/json");
+        HttpResponse *post_response = post_request->send(body.c_str(), strlen(body.c_str()));
+        if (!post_response) {
+            printf("HttpRequest failed (error code %d)\n", post_request->get_error());
+            return std::to_string(post_request->get_error());
+        }
+        printf("\n----- HTTP POST response -----\n");
+        std::string response_body = post_response->get_body_as_string();
+        delete post_response;
+        return response_body;
+    }
+\end{lstlisting}
+\subsection{HTTP get using the mbeb-http library}
+The second function is similar to the first one with the main difference that it performs an HTTP get with a JSON payload.
+It also uses the network interface to send it to the appropriate URL.
+It does that with the help of the network interface object defined in the setup and sends that post to the appropriate URL.
+\begin{lstlisting}[style=CStyle]
+std::string http_get_request_with_response(NetworkInterface* _net, std::string url)
+{
+    HttpRequest *get_request= new HttpRequest(_net, HTTP_GET, url.c_str());
+
+    HttpResponse *get_request_response = get_request->send();
+
+    if (!get_request_response) {
+        printf("HttpRequest failed (error code %d)\n", get_request->get_error());
+        return std::to_string(get_request->get_error());
+    }
+    printf("\n----- HTTP GET response -----\n");
+    std::string response_body = get_request_response->get_body_as_string();
+    delete get_request_response;
+    return response_body;
+}
+\end{lstlisting}
+\subsection{Constructing appropriate JSON strings}
+To use the POST and GET function defined in the previous section a correct JSON payload, or HTTP body, has to be created.
+To register a system, consumer, or provider, a body similar to the one defined underneath should be used.
+\begin{lstlisting}[style=CStyle]
+    std::string register_system_body = "{\"address\": \"192.168.0.101\", \"authenticationInfo\": \"\", \"port\": 1234, \"systemName\": \"system_name\"}";
+\end{lstlisting}
+The next operation is to register a service, and just as when registering a system, a correct JSON payload is required.
+The previously defined provider system is passed as a parameter here an interface, has to be defined as well.
+\begin{lstlisting}[style=CStyle]
+    std::string register_service_body = "{\"serviceDefinition\": \"service_definition\", \"providerSystem\": {\"systemName\": \"system_name\", \"address\": \"192.168.0.101\", \"port\": 1234, \"authenticationInfo\": \"\" }, \"interfaces\": [\"HTTP-INSECURE-JSON\"], \"serviceUri\": \"temperature\"}\r\n";
+\end{lstlisting}
+To create intracloud rules provider, consumer, and service definition ids have to be passed as parameters.
+Two helper functions were implemented to achieve this.
+The first one parses the response from registering a system, finds the substring containing the systems id and returns that as a character pointer.
+The second one parses the response from registering a service, finds the substring containing the service definition id, and returns that as a character pointer.
+The correct JSON can now be constructed.
+\begin{lstlisting}[style=CStyle]
+    std::string add_intracloud_authorization_body = "{\"consumerId\": " + std::to_string(consumer_id) + ",\"interfaceIds\": [3], \"providerIds\": [" + std::to_string(provider_id) + "], \"serviceDefinitionIds\": [" + std::to_string(service_id) + "]}\r\n";
+\end{lstlisting}
+To create an orchestration store rule the previously defined consumer and provider system and the consumer id have to be provided. 
+Information about the operating cloud and interface has to be defined as well.
+\begin{lstlisting}[style=CStyle]
+std::string create_orchestration_store_body = "[{ \"serviceDefinitionName\": \"test_service_definition\", \"consumerSystemId\": " + std::to_string(consumer_id) + ", \"providerSystem\": { \"systemName\":  \"test_provider\", \"address\": \"192.168.0.101\", \"port\": 1234, \"authenticationInfo\": \"\"}, \"cloud\": { \"operator\": \"aitia\", \"name\": \"testcloud2\" }, \"serviceInterfaceName\": \"HTTPS-SECURE-JSON\", \"priority\": 1}]\r\n";
+\end{lstlisting}
+A get request is sent to the orchestrator with the id of the consumer as a parameter.
+The response from the orchestrator contains information about the address, port, and service URI of the provider the consumer wants to connect to.
+To parse the response from the orchestrator a helper function was created, it takes the response as a parameter and returns the address, port, and service URI as a string.
+If every step is successful, the consumer can connect to the provider.
+
+\subsection{Sequnce diagram}
+A sequence diagram was created to aid in visualization of the correct order of execution.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Pictures/sequence_diagram_total.pdf} 
+    \caption{Sequence diagram of the whole process.}
+    \label{sequence diagram}
+\end{figure}
