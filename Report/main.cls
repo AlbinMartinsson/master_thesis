@@ -79,6 +79,8 @@
 \RequirePackage{listings}
 \RequirePackage{xcolor}
 \RequirePackage{float}
+\RequirePackage{parskip}
+\RequirePackage{hyperref}
 \usepackage[utf8]{inputenc}
 %\RequirePackage[latin1]{inputenc}
 \RequirePackage{titletoc}
@@ -212,6 +214,7 @@
    \clearpage{\thispagestyle{empty}\cleardoublepage}
 
    %--- Make Table of Contents
+   {\parskip=0pt
   \renewcommand{\contentsname}{\hrule\vspace*{8pt}\Huge{\hfill{\sc
                 Contents}\vspace*{8pt}\hrule\vspace*{-1cm} }}
     
@@ -221,9 +224,9 @@
     {\hspace{-0.7cm}}
     {\hfill\contentspage}
  
-   \tableofcontents
+    {\small\tableofcontents}
    \clearpage{\thispagestyle{empty}\cleardoublepage}
-  
+   }
  %--- Include preface
  \setcounter{secnumdepth}{-2}
  \chapter*{\hrule\medskip\hfill \sc Acknowledgments \medskip\hrule}

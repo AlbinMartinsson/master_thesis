@@ -65,13 +65,17 @@ The Github page also states the three main objectives of the service registry sy
     \item Remove or update available services from the database.
     \item Allow application system to use the lookup functionality of the registry.
 \end{itemize}
+
 %Authorization system.
 The Authorization system contains two databases for keeping track of which system can consume services from which other systems, depending on whether or not the Application system are in the same cloud or not according to the projects Github page.\cite{Github2021}
 The GitHub documentation also states that if the authorization happens within the same cloud it is called intra-cloud authorization and if it happens across two local clouds it is called inter-cloud authorization.\cite{Github2021}
+
 %Orchestrator system.
 The Orchestration system is responsible for pairing and finding service providers and consumers Delsing et. al. declares.\cite{Delsing2017} 
 Delsing et. al. continues to state that the orchestrator also stores the orchestration requirements and the resulting orchestration rules.\cite{Delsing2017} 
 The project's documentation argues that the main objective of the orchestrator system is to find an appropriate provider for the requesting consumer system.\cite{Github2021}
+
+%Two types of orchestration
 The documentation also states that there are two types of orchestration, store orchestration, and dynamic orchestration.
 Store orchestration uses the database orchestration store to find predefined orchestration rules.
 Dynamic orchestration on the other hand searches the entire local cloud, or even other clouds, to find the matching provider.\cite{Github2021}
