@@ -26,14 +26,14 @@ See figure x for a short historic overview of previous industrial revolutions.
 According to Vadiya industry 4.0 promotes the connection of sensors and devices both to the internet and to other sensors or devices.\cite{Vaidya2018} 
 
 %Intelligent  sensors.
-Hozdić states that a sensor is a device capable of providing an appropriate output in response to a measured value.\cite{Hozdic2015}
-One key feature of an intelligent sensor is that to increase the level of information processing it processes the information at a logical level Hozdić argues.\cite{Hozdic2015}
+Hozdić states that a sensor is a device capable of providing an appropriate output in response to a measured value.
+One key feature of an intelligent sensor is that to increase the level of information processing it processes the information at a logical level Hozdić argues.
 An Intelligent sensor  is capable of executing actions based on the measured value in contrast to regular sensors, making them easier to set up and use means Hozdić.\cite{Hozdic2015} 
 
 %Cyber Physical Systems (CPS).
-Hozdić defines a cyber-physical system, CPS, as a new generation of a system that integrates both physical and computer abilities.\cite{Hozdic2015}
+Hozdić defines a cyber-physical system, CPS, as a new generation of a system that integrates both physical and computer abilities.
 A cyber-physical system consists of two parts, one cybernetic and one physical.
-The cybernetic part of the system can be viewed as a summation of logic and sensor units while the physical part of the system can be viewed as a summation of the actuator units Hozdić adds.\cite{Hozdic2015}
+The cybernetic part of the system can be viewed as a summation of logic and sensor units while the physical part of the system can be viewed as a summation of the actuator units Hozdić adds.
 Xu et. al. states that cyber-physical systems are a key part of Industry 4.0. In contrast to the simple embedded systems of today will be exceeded due to advances in CPS that enable enhanced capability, scalability, adaptability, resiliency, safety, usability, and security.\cite{Xu2018}
 Hozdić argues that the CPS can share and receive information from intelligent sensors that connect to digital networks is what enables and form an internet of things.\cite{Hozdic2015}
  
@@ -44,11 +44,11 @@ Delsing et.al. also argues that the three mandatory core systems running a local
 
 %Service and systems.
 Two terms have to be introduced to further understand what the Eclipse Arrowhead framework aims to accomplish, services and systems.
-Delsing et. al. defines a system as what is providing or consuming a service.\cite{Delsing2017} 
+Delsing et. al. defines a system as what is providing or consuming a service.
 Furthermore, a service is defined as what is used to convey information between a provider and a consumer Delsing et. al. argues.\cite{Delsing2017}
 
 %Mandatory core systems.
-The Eclipse Arrowhead framework, Arrowhead from now on, consists of three mandatory core systems according to Delsing et. al.\cite{Delsing2017}
+The Eclipse Arrowhead framework, Arrowhead from now on, consists of three mandatory core systems according to Delsing et. al.
 To fully operate a local cloud as defined in the previous section it must, according to Delsing, contain:
 \begin{itemize}
     \item Service registry system.
@@ -67,11 +67,11 @@ The Github page also states the three main objectives of the service registry sy
 \end{itemize}
 
 %Authorization system.
-The Authorization system contains two databases for keeping track of which system can consume services from which other systems, depending on whether or not the Application system are in the same cloud or not according to the projects Github page.\cite{Github2021}
+The Authorization system contains two databases for keeping track of which system can consume services from which other systems, depending on whether or not the Application system are in the same cloud or not according to the projects Github page.
 The GitHub documentation also states that if the authorization happens within the same cloud it is called intra-cloud authorization and if it happens across two local clouds it is called inter-cloud authorization.\cite{Github2021}
 
 %Orchestrator system.
-The Orchestration system is responsible for pairing and finding service providers and consumers Delsing et. al. declares.\cite{Delsing2017} 
+The Orchestration system is responsible for pairing and finding service providers and consumers Delsing et. al. declares.
 Delsing et. al. continues to state that the orchestrator also stores the orchestration requirements and the resulting orchestration rules.\cite{Delsing2017} 
 The project's documentation argues that the main objective of the orchestrator system is to find an appropriate provider for the requesting consumer system.\cite{Github2021}
 
@@ -80,33 +80,35 @@ The documentation also states that there are two types of orchestration, store o
 Store orchestration uses the database orchestration store to find predefined orchestration rules.
 Dynamic orchestration on the other hand searches the entire local cloud, or even other clouds, to find the matching provider.\cite{Github2021}
 
+\section{Amazon Web Services}
+
 \section{Security}
 %Introduction.
 Meneghello et. al. argues that the increasing number of IoT devices and the pervasive nature of new smart home or healthcare devices can pose a real threat to the users' integrity.
 Sensitive information Meneghello et. al. defines as a video recording of the user's home, the user's location, access to buildings, health monitoring, and industrial processes.\cite{Meneghello2019}
 
 %Secruity challenges.
-Meneghello et. al. states the security requirements of an IoT system can be divided into three different operational levels, namely the information, access, and functional level.\cite{Meneghello2019}
+Meneghello et. al. states the security requirements of an IoT system can be divided into three different operational levels, namely the information, access, and functional level.
 The information level should guarantee that the integrity, anonymity, confidentiality, and privacy of the system are preserved. 
-Meaning that messages should not be altered during transmission, the identity of the data source and the clients' private information remains hidden and that data cannot be read by third parties Meneghello et. al. argues.\cite{Meneghello2019} 
+Meaning that messages should not be altered during transmission, the identity of the data source and the clients' private information remains hidden and that data cannot be read by third parties Meneghello et. al. argues.
 The access level provides a guarantee that only legitimate users are allowed access to the network and the devices associated with that network. 
-It also guarantees that users within the network only use resources they are allowed to use Meneghello et. al. states.\cite{Meneghello2019}
+It also guarantees that users within the network only use resources they are allowed to use Meneghello et. al. states.
 The functional level should guarantee the continued functionality of a network even in the case of malfunction or a malicious attack Meneghello et. al. adds.\cite{Meneghello2019}
 
 %Pricacy.
-Zhang also argues that privacy is a big concern with IoT devices and suggests two solutions data collection policy and data anonymization.\cite{Zhang2014}
-A policy that describes how the data is collected from the devices would restrict the flow of data, therefore ensuring privacy preservation can be ensured Zhang states.\cite{Zhang2014}
+Zhang also argues that privacy is a big concern with IoT devices and suggests two solutions data collection policy and data anonymization.
+A policy that describes how the data is collected from the devices would restrict the flow of data, therefore ensuring privacy preservation can be ensured Zhang states.
 Data anonymization means that the private information sent by the IoT devices is either encrypted or that the relation of the data and its owner is concealed according to Zhang.\cite{Zhang2014}
 
 %Encryption.
 Meneghello et. al. argues that one of the main aspects of security within IoT is to ensure that the data sent is the data received and that the data has not been tampered with or read during transmission.
-The most important operation to guarantee that is the use of encryption, which converts the message sent in plain text to an encrypted message only readable with a decryption key Meneghello et. al. states.\cite{Meneghello2019}
-Meneghello et. al. states that there are two mechanisms for encryption, symmetric and asymetric.\cite{Meneghello2019} 
+The most important operation to guarantee that is the use of encryption, which converts the message sent in plain text to an encrypted message only readable with a decryption key Meneghello et. al. states.
+Meneghello et. al. states that there are two mechanisms for encryption, symmetric and asymetric.
 Symmetric encryption is when the same key is used for encryption and decryption, so it has to be shared with both the sender and receiver.
 Asymmetric encryption on the other hand only shares the public key and the sender and receiver have their own private keys Meneghello et. al. means.\cite{Meneghello2019}
 
 %End-to-End encryption.
-Hassija et. al. states the importance of end-to-end encryption and the challenges it poses for IoT systems.\cite{Hassija2019}
+Hassija et. al. states the importance of end-to-end encryption and the challenges it poses for IoT systems.
 End-to-end encryption is required to ensure the confidentiality of the data, the application should not let anyone except the intended recipient read the messages sent Hassija adds.\cite{Hassija2019}
 
 %Authentification.
@@ -133,9 +135,9 @@ The biggest benefits to using HTTP are that it supports the RESTful Web architec
 
 %Comparisson 
 Naik argues that HTTP exceeds MQTT in message size, message overload, power consumption, resource requirements, bandwidth, and latency. 
-All things that are considered negative for a protocol.\cite{Naik2017}
+All things that are considered negative for a protocol.
 On the other hand, HTTP exceeds MQTT in interoperability, standardization, security, and provisioning Naik adds.\cite{Naik2017}
 All things that are considered positive for a protocol.
 Shariatzadeh argues that that HTTP may be expansive for many IoT devices but it can be beneficial due to the interoperability since it is developed for the web originally.\cite{Shariatzadeh2016}
-Wukkadada also points out the lower power consumption of the MQTT protocol but adds that the more verbose HTTP protocol can be easier for developers to understand.\cite{Wukkadada2018}
+Wukkadada also points out the lower power consumption of the MQTT protocol but adds that the more verbose HTTP protocol can be easier for developers to understand.
 Wukkada drives home the point of choosing MQTT for IoT devices.\cite{Wukkadada2018}
