@@ -56,32 +56,21 @@ To fully operate a local cloud as defined in the previous section it must, accor
     \item Orchestration system.\cite{Delsing2017}
 \end{itemize} 
 
-%Service registry system.
-The service registry system is responsibly for enabling discovery and registring services Delsing et. al. states.\cite{Delsing2017} 
-According to the Eclipse Arrowhead projects own GitHub page the service registry system provides the database which stores the offered services in the local cloud.\cite{Github2021}
-The Github page also states the three main objectives of the service registry system are:
-\begin{itemize}
-    \item To allow the application system to register available services to the database. 
-    \item Remove or update available services from the database.
-    \item Allow application system to use the lookup functionality of the registry.
-\end{itemize}
-
-%Authorization system.
-The Authorization system contains two databases for keeping track of which system can consume services from which other systems, depending on whether or not the Application system are in the same cloud or not according to the projects Github page.
-The GitHub documentation also states that if the authorization happens within the same cloud it is called intra-cloud authorization and if it happens across two local clouds it is called inter-cloud authorization.\cite{Github2021}
-
-%Orchestrator system.
-The Orchestration system is responsible for pairing and finding service providers and consumers Delsing et. al. declares.
-Delsing et. al. continues to state that the orchestrator also stores the orchestration requirements and the resulting orchestration rules.\cite{Delsing2017} 
-The project's documentation argues that the main objective of the orchestrator system is to find an appropriate provider for the requesting consumer system.\cite{Github2021}
-
-%Two types of orchestration
-The documentation also states that there are two types of orchestration, store orchestration, and dynamic orchestration.
-Store orchestration uses the database orchestration store to find predefined orchestration rules.
-Dynamic orchestration on the other hand searches the entire local cloud, or even other clouds, to find the matching provider.\cite{Github2021}
-
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Pictures/arrowheadfulldiagram.png} 
+    \caption{The core systems of the Eclipse Arrowhead framework}
+    \label{diagram arrowhead}
+\end{figure}
+More about the dynamics betweeen the consumer and provider system will follow in the theory section.
 \section{Amazon Web Services}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Pictures/aws.pdf} 
+    \caption{The core systems of the Amazon Web Services}
+    \label{diagram AWS}
+\end{figure}
 \section{Security}
 %Introduction.
 Meneghello et. al. argues that the increasing number of IoT devices and the pervasive nature of new smart home or healthcare devices can pose a real threat to the users' integrity.
