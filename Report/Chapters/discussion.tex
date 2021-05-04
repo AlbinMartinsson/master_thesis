@@ -1,2 +1,65 @@
-\section{Discussion}
-Discuss how you solved your problems from 1.3, and what the results were (from section 5). Describe alternative solutions, what you could have done differently, problems you encountered, how your results compare to other peoples' results, etc. Go through each problem individually, and then in the end add general remarks and discussion points which are outside the problems themselves but that you think may be valuable to share with the reader. This section can have several subsections.
+This thesis aimed to investigate whether it was possible to use an embedded device in conjunction with the Eclipse Arrowhead framework.
+If that was possible, this thesis also aimed to show the advantages and limitations of using the Eclipse Arrowhead framework on embedded devices.
+Another goal of this thesis was to show that using the Arrowhead framework on embedded devices provides a ready-to-make example for people to try out the framework.
+To fill a void in the Arrowhead project GitHub with a complete example ready to compile and using an online compiler.
+
+\section{Choosing development environment}
+The IDE, integrated development environment, chosen for this thesis stood between the Mbeb online compiler and the STM CUBE IDE. 
+The STM cube IDE requires setup on the local machine, installing C and Cmake, but provides shorter compilation time.
+The Mbed online compiler requires no setup on the local machine but takes much longer to save and compile the code.
+
+Both compilation time and an easy setup are favorable attributes for an IDE, and it all depends on the end goal.
+If the goal were to try out multiple different iterations of the same source code, then STM cube IDE would be the best choice.
+On the other hand, if the goal was to provide an example of a framework or concept and get the users started as quickly and painless as possible, the Mbed online compiler is the obvious choice.
+The latter fitted the goals of this thesis better and was therefore chosen. 
+
+Both IDEs provide ready to run example that features different aspects of the development boards, and both contain an example of connecting the board to the internet.
+The Mbed online compiler, in conjunction with arm Mbed OS, provides an easy and intuitive way to get started on desired projects.
+The Mbed online compiler has its drawbacks as well. When using it, the user is pushed into using libraries integrated into the Mbed OS 6.
+It is possible to use outside libraries but more often than not, resulting in a rabbit hole of including header files.
+On the other hand, STM Cube IDE works similarly to a local C-program. If the header files are in the include folder or installed locally, they can be used without much effort.
+
+The STM Cude IDE also supports code generation from Cube MX, letting the user choose which peripherals to be included and adding initiation code before developing a project.
+When using the Mbed online compiler, all the peripherals and sensors have to be initialized by the user.
+It will result in a trade-off between ease of use and customizability.
+
+\section{Provider}
+The implementation in this thesis follows the publish/subscribe model, as described in the related work section. 
+The embedded device has to find where to send the temperature data and sends it in predefined intervals. 
+The implementation made in this thesis lacks the functionality of acting as a server, serving a request from a consumer. 
+
+In the Eclipse Arrowhead system, a provider system will typically be passive, reacting to requests.
+When speaking of it in an HTTP sense, the provider will act as a server.
+A consumer will usually act as a client and find the provider's address to request services from the provider. 
+In this implementation, the provider will find the consumer's address and send the temperature information.
+It is important not to get hanged upon the terminology as both a provider and a consumer. 
+In essence, they are the same thing and can be used interchangeably.
+
+Depending on the application, it might be more efficient to send the data when the consumer demands it. 
+It is possible to imagine the opposite as well.
+If a system relies on past information, it might be more efficient to send the data at a specified rate.
+Negating the need for the embedded device to respond to requests can increase energy efficiency by having it boot at specific times to send the data.
+If a system relies on real-time data creating a REST API to handle these requests would be the next logical step for developing this example. 
+This will be covered in the future work section in the next chapter.
+
+\section{Comparisson of different frameworks}
+The previous chapters showed that it was possible to use the Eclipse Arrowhead framework with embedded devices. It also showed the advantages of using the framework.
+The main advantage was the response time, having on average 17.5 times faster response time than its competitors. 
+A faster response time could be a great advantage when dealing with real-time applications when a fast response is as essential as a correct one. 
+
+One disadvantage of using the Eclipse Arrowhead could be the lack of supported hardware.
+This thesis was the first example to show that it was possible to connect to the arrowhead framework on embedded devices.
+In contrast, Amazon Web Services have many examples of using different hardware. 
+Amazon Web Services also has examples showcasing the different sensors and connection possibilities of their supported boards.
+Creating an open-source example of using the Eclipse Arrowhead framework could inspire others to start developing embedded Arrowhead applications, expanding the functionality of this implementation.
+
+The eclipse Arrowhead Framework requires hardware to run on, a service that has to be paid for with Amazon Web Services. 
+It is probably cheaper to purchase hardware and run the Eclipse Arrowhead on a larger scale, but that requires an upfront cost.
+In smaller-scale applications or when trying out a proof of concept, the prices offered by Amazon Web Services are hard to beat.
+When using Amazon Web Services the user is reliant on that their hardware and network runs contuniously, an issue which magnitude showed its face this fall. 
+
+
+One significant advantage of using Amazon Web Services is its services offered out of the box.
+Lambda functions, S3 buckets, and all the functionality that follows with them is something the user will have to implement on their own if choosing the Eclipse Arrowhead framework.
+On the other hand, if the user wants to do something not supported by Amazon Web Services, they will be constrained.
+As with the choice of IDE, it will result in a trade-off between ease of use and customizability.

@@ -1,19 +1,19 @@
 %INTRO
-The theory behind the implementation in this thesis consists of performing correct SQL-queries to appropriate tables in the Eclipse Arrowhead framework database with the help of Swagger UI REST API.
+The theory behind the implementation in this thesis consists of performing correct SQL queries to appropriate tables in the Eclipse Arrowhead framework database with the help of Swagger UI REST API.
 %AHF
 \section{Eclipse Arrowhead framework} 
 
 %Mandatory core systems.
-As mentioned in the related work section the Eclipse Arrowhead framework, consists of three mandatory core systems according to Delsing et. al
+As mentioned in the related work section, the Eclipse Arrowhead framework consists of three mandatory core systems
 \begin{itemize}
     \item Service registry system.
     \item Authorization system. 
-    \item Orchestration system.\cite{Delsing2017}
+    \item Orchestration system.
 \end{itemize} 
 %Service registry system.
 \subsection{Service registry system}
-The service registry system is responsibly for enabling discovery and registring services Delsing et. al. states. 
-According to the Eclipse Arrowhead projects own GitHub page the service registry system provides the database which stores the offered services in the local cloud.\cite{Github2021}
+The service registry system is responsible for enabling discovery and registring services, Delsing et al. state. 
+According to the Eclipse Arrowhead projects own GitHub page, the service registry system provides the database which stores the offered services in the local cloud.\cite{Github2021}
 The Github page also states the three main objectives of the service registry system are:
 \begin{itemize}
     \item To allow the application system to register available services to the database. 
@@ -22,66 +22,94 @@ The Github page also states the three main objectives of the service registry sy
 \end{itemize}
 %Authorization system.
 \subsection{Authorization system}
-The Authorization system contains two databases for keeping track of which system can consume services from which other systems, depending on whether or not the Application system are in the same cloud or not according to the projects Github page.
-The GitHub documentation also states that if the authorization happens within the same cloud it is called intra-cloud authorization and if it happens across two local clouds it is called inter-cloud authorization.\cite{Github2021}
+According to the projects Github page, the Authorization system contains two databases for keeping track of which system can consume services from which other systems, depending on whether the Application system is in the same cloud or not.
+The GitHub documentation also states that if the authorization happens within the same cloud, it is called intra-cloud authorization, and if it happens across two local clouds, it is called inter-cloud authorization.\cite{Github2021}
 \subsection{Orchestrator system}
 %Orchestrator system.
-The Orchestration system is responsible for pairing and finding service providers and consumers Delsing et. al. declares.
-Delsing et. al. continues to state that the orchestrator also stores the orchestration requirements and the resulting orchestration rules.\cite{Delsing2017} 
+The Orchestration system is responsible for pairing and finding service providers and consumers, Delsing et al. declare.
+Delsing et al. continue to state that the orchestrator also stores the orchestration requirements and the resulting orchestration rules.\cite{Delsing2017} 
 The project's documentation argues that the main objective of the orchestrator system is to find an appropriate provider for the requesting consumer system.\cite{Github2021}
 
 %Two types of orchestration
-The documentation also states that there are two types of orchestration, store orchestration, and dynamic orchestration.
+The documentation also states that there are two types of orchestration, store orchestration and dynamic orchestration.
 Store orchestration uses the database orchestration store to find predefined orchestration rules.
-Dynamic orchestration on the other hand searches the entire local cloud, or even other clouds, to find the matching provider.\cite{Github2021}
+On the other hand, dynamic orchestration searches the entire local cloud, or even other clouds, to find the matching provider.\cite{Github2021}
 %AFHDB
 \section{Arrowhead database}
 %Intro
-The Eclipse Arrowhead framework can be viewed as a series of database tables that has to be linked with each other.
+The Eclipse Arrowhead framework can be viewed as a series of database tables that have to be linked with each other.
 %Clarification of tables.
 One table relevant to all the core systems is the service\_interface table.
-It correlates a connection interface, i.e. HTTP-INSECURE-JSON, HTTP-SECURE-JSON and HTTPS-SECURE-JSON, to a specific ID used later on.
+It correlates a connection interface, i.e., HTTP-INSECURE-JSON, HTTP-SECURE-JSON, and HTTPS-SECURE-JSON, to a specific ID used later on.
 \subsection{Service registry system tables}
 The tables in the Arrowhead database relevant to the service registry system are
 \begin{itemize}
-    \item system\_, keeps information about consumers and providers. 
-    \item service\_registry, contains information about the different services.
-    \item service\_definition, stores service definition name and ID.
-    \item service\_registry\_interface\_connection, correlates a service registry ID to a interface ID.
+    \item system\_ keeps the information about consumers and providers. 
+    \item service\_registry contains information about the different services.
+    \item service\_definition, stores service definition name, and ID.
+    \item service\_registry\_interface\_connection correlates a service registry ID to an interface ID.
 \end{itemize}
 \subsection{Authorization system tables}
 The tables in the Arrowhead database relevant to the authorization system are
 \begin{itemize}
-    \item authorization\_intra\_cloud,  adds authorization rules for the provider, consumer and service definition. Dictates which consumers are allowed to connect to which providers and the services they are allowed to use.
-    \item authorization\_intra\_cloud\_interface\_connection,  correlates a intra cloud authorization ID to a interface ID.
+    \item authorization\_intra\_cloud,  adds authorization rules for the provider, consumer, and service definition. Dictates which consumers are allowed to connect to which providers and the services they are allowed to use.
+    \item authorization\_intra\_cloud\_interface\_connection correlates an intracloud authorization ID to an interface ID.
 \end{itemize}
 \subsection{Orchestration system tables}
 The tables in the Arrowhead database relevant to the orchestrator system are
 \begin{itemize}
-    \item orchestrator\_store,  contains orchetrator store entry, with information about which endpoints of provides which the consumer can use.
+    \item orchestrator\_store,  contains orchestrator store entry, with information about which endpoints the consumers can use.
 \end{itemize}
 
 %SWAGGER
 \section{Swagger UI}
 The Eclipse Arrowhead framework has integrated Swagger UI into their core services. 
-This means that the databases can be accessed, and altered with using HTTP methods instead of SQL queries.
-Each core system has their own swagger UI page which serves as a visual user friendly REST API. 
-A REST API is a way to structure an API and consists of the following main principles according to Wikipedia.
+This means that the databases can be accessed and altered using HTTP methods instead of SQL queries.
+Each core system has its swagger UI page, which serves as a visual, user-friendly REST API. 
+A REST API, Representational state transfer, is a way to structure an API and consists of the following main principles according to Wikipedia.\cite{WIKIREST2021}
 \begin{itemize}
-    \item Each resource has their own URI.
-    \item  
+    \item Each resource has its own URI.
+    \item The resources have a common interface for commands between client and server. These are
+    \begin{itemize}
+        \item POST creates a new state for a resource.
+        \item GET requests the state of a resource.
+        \item PUT replaces the state of an already created state.
+        \item DELETE deletes a resource state.
+    \end{itemize}
 \end{itemize}
-
-
-
+Instead of sending SQL-queries, the Swagger UI also enables the use of JSON, JavaScript Object Notation, and the construction of theses will be covered in the implementation section.
 %ARM MBED
 \section{ARM Mbed}
-To enable the use of the Swagger UI on the STM 32 board needs to be connected to the internet. 
+%Intro
+The  STM 32 board needs to be connected to the internet to enable the use of the Swagger UI. 
+The ARM mbed OS 6 provides the functionality needed for this. 
+
+%Foundations
+Mbed OS 6 uses a hardware abstraction layer, HAL, to enable the essential parts of a microcontroller, such as timers.
+Using hardware supported by Mbed OS 6 libraries, drivers, and, support for standard peripherals for microcontrollers are automatically imported upon compilation.
+This foundation enables the user to write applications against a shared set of APIs.
+Another advantage of using supported hardware is the retargeting layer and boot process integration, so application development feels similar to C or C++ development.
+
+%Connectivity
+ARM Mbed OS enables the user to use a range of connectivity tools and suits. In this thesis, Wi-Fi is used, but there is support for Bluetooth, NFC, and much more.
+Mbed OS connectivity and network stack offer a stable core of existing connectivity technologies, perfect for even the most demanding and versatile IoT applications. 
+
+%Compilation - Expand this?
+The Mbed online compiler allows the user to develop their code online, independent of the platform. 
+The online compiler also supports the importation of code from GitHub, making it easier for the users to import this code and genuinely use this as a 'Getting started with the Eclipse Arrowhead framework' example. 
 
 
 \section{Performance measurement}
-Response time is measured to compare the performance of the two different protocols, MQTT and HTPP. 
-Due to the vastly different implementation of the two frameworks, AWS and Eclipse Arrowhead framework, the only thing worth measuring is the response time when pinging the different frameworks.
+Response time is measured to compare the performance of the three different IoT frameworks.  
+Due to the vastly different implementation of the three frameworks, Amazon Web Services, Microsoft Azure, and Eclipse Arrowhead framework, the only thing worth measuring is the response time when pinging the different frameworks.
+
+%Measurement
+The Test-Connection command in power-shell sends four 32-bit packets to the specified destination. 
+This will be iterated 250 times, resulting in 1000 measured values that are significant enough to produce an average response time.
+The average is calculated with $\frac{\sum \text{response times}}{\text{number of response times}}$.
+In addition to presenting the average response time, the maximum and minimum response times will be calculated to give further understanding of the performance of the different frameworks. 
+The results of these calculations will be presented in detail in Chapter 5.
+
 
 
  
