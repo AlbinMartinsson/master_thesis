@@ -3,7 +3,7 @@ If that was possible, this thesis also aimed to show the advantages and limitati
 Another goal of this thesis was to show that using the Arrowhead framework on embedded devices provides a ready-to-make example for people to try out the framework.
 To fill a void in the Arrowhead project GitHub with a complete example ready to compile and using an online compiler.
 
-\section{Choosing development environment}
+\section{Choice of development environment}
 The IDE, integrated development environment, chosen for this thesis stood between the Mbeb online compiler and the STM CUBE IDE. 
 The STM cube IDE requires setup on the local machine, installing C and Cmake, but provides shorter compilation time.
 The Mbed online compiler requires no setup on the local machine but takes much longer to save and compile the code.
@@ -15,34 +15,48 @@ The latter fitted the goals of this thesis better and was therefore chosen.
 
 Both IDEs provide ready to run example that features different aspects of the development boards, and both contain an example of connecting the board to the internet.
 The Mbed online compiler, in conjunction with arm Mbed OS, provides an easy and intuitive way to get started on desired projects.
-The Mbed online compiler has its drawbacks as well. When using it, the user is pushed into using libraries integrated into the Mbed OS 6.
+The Mbed online compiler has its drawbacks as well. 
+When using it, the user is pushed into using libraries integrated into the Mbed OS 6.
 It is possible to use outside libraries but more often than not, resulting in a rabbit hole of including header files.
-On the other hand, STM Cube IDE works similarly to a local C-program. If the header files are in the include folder or installed locally, they can be used without much effort.
+On the other hand, STM Cube IDE works similarly to a local C-program. 
+If the header files are in the include folder or installed locally, they can be used without much effort.
 
 The STM Cude IDE also supports code generation from Cube MX, letting the user choose which peripherals to be included and adding initiation code before developing a project.
-When using the Mbed online compiler, all the peripherals and sensors have to be initialized by the user.
-It will result in a trade-off between ease of use and customizability.
+Cube MX also supports importing supported libraries, generating the required include folders and header files for the user beforehand. 
+When using the Mbed online compiler, all the peripherals, sensors, and libraries have to be initialized by the user.
+It will result in a trade-off between ease of use, performance, and customizability.
 
-\section{Provider}
+One disadvantage of using the STM cube IDE is that all applications will become platform-dependent.
+STM cube IDE requires the user to have a Windows computer. 
+Mbed online compiler, on the other hand, builds everything in the browser.
+When the build is done, the Mbed online compiler prompts the user to download a .bin file that can be dragged to the STM32 B-L4S5I-IOT01A board, as if storing a file on a flash drive.
+The STM32 B-L4S5I-IOT01A board compiles the .bin file and outputs the result to the user, no need to install Cmake or other toolchains. 
+
+\section{Provider arcitechture}
 The implementation in this thesis follows the publish/subscribe model, as described in the related work section. 
-The embedded device has to find where to send the temperature data and sends it in predefined intervals. 
-The implementation made in this thesis lacks the functionality of acting as a server, serving a request from a consumer. 
+The STM32 B-L4S5I-IOT01A board is the publisher, and the remote computer will act as the subscriber.
+The board has to find where to send the temperature data and sends it in predefined intervals after that. 
+The implementation made in this thesis lacks the functionality of acting as a server, serving a request from a consumer.
+
 
 In the Eclipse Arrowhead system, a provider system will typically be passive, reacting to requests.
 When speaking of it in an HTTP sense, the provider will act as a server.
 A consumer will usually act as a client and find the provider's address to request services from the provider. 
 In this implementation, the provider will find the consumer's address and send the temperature information.
-It is important not to get hanged upon the terminology as both a provider and a consumer. 
+The service it provides is sending the reading from the temperature sensor in specific time intervals. 
+It is important not to get hanged upon the terminology as both a provider and a consumer are considered systems in the Eclipse Arrowhead framework. 
 In essence, they are the same thing and can be used interchangeably.
+It all depends on how the service is defined.
 
 Depending on the application, it might be more efficient to send the data when the consumer demands it. 
 It is possible to imagine the opposite as well.
 If a system relies on past information, it might be more efficient to send the data at a specified rate.
+If the system has to process the data and perhaps depends on a lot of data, it may be more efficient to use the subscribe/publish model. 
 Negating the need for the embedded device to respond to requests can increase energy efficiency by having it boot at specific times to send the data.
 If a system relies on real-time data creating a REST API to handle these requests would be the next logical step for developing this example. 
 This will be covered in the future work section in the next chapter.
 
-\section{Comparisson of different frameworks}
+\section{Comparing different frameworks}
 The previous chapters showed that it was possible to use the Eclipse Arrowhead framework with embedded devices. It also showed the advantages of using the framework.
 The main advantage was the response time, having on average 17.5 times faster response time than its competitors. 
 A faster response time could be a great advantage when dealing with real-time applications when a fast response is as essential as a correct one. 
@@ -56,10 +70,21 @@ Creating an open-source example of using the Eclipse Arrowhead framework could i
 The eclipse Arrowhead Framework requires hardware to run on, a service that has to be paid for with Amazon Web Services. 
 It is probably cheaper to purchase hardware and run the Eclipse Arrowhead on a larger scale, but that requires an upfront cost.
 In smaller-scale applications or when trying out a proof of concept, the prices offered by Amazon Web Services are hard to beat.
-When using Amazon Web Services the user is reliant on that their hardware and network runs contuniously, an issue which magnitude showed its face this fall. 
-
+When using Amazon Web Services, the user relies on that their hardware and network runs continuously, an issue which magnitude showed its face this fall. 
 
 One significant advantage of using Amazon Web Services is its services offered out of the box.
 Lambda functions, S3 buckets, and all the functionality that follows with them is something the user will have to implement on their own if choosing the Eclipse Arrowhead framework.
 On the other hand, if the user wants to do something not supported by Amazon Web Services, they will be constrained.
 As with the choice of IDE, it will result in a trade-off between ease of use and customizability.
+
+Another significant advantage of Amazon Web Services is the support for and enforcement of using HTTPS.
+When deploying a 'Thing' to the AWS IoT Core, a certificate is generated and has to be included in the source code.
+The security issues raised in the related work section illustrate the need for HTTPS and other security measures for IoT devices in production.
+When developing a proof of concept, as this thesis has been doing, the requirement of HTTPS might be overstated.
+It becomes a trade-off between usability, development time, and security. 
+If the intent is to demonstrate that the Eclipse Arrowhead framework works on embedded devices, the use of HTTPS and all the extra steps for implementing that might do more harm than good. 
+
+The Eclipse Arrowhead framework supports HTTPS and encourages its users to use it.
+There is documentation for generating Arrowhead compliant certificates and support for it in the Java implementation of a client.
+However, it proved to be challenging to implement and beyond the scope of this thesis. 
+The attempts of implementing HTTPS will be covered more in the future work section in the next chapter.
