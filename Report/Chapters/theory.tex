@@ -37,7 +37,7 @@ On the other hand, dynamic orchestration searches the entire local cloud, or eve
 %AFHDB
 \section{Arrowhead database}
 %Intro
-The Eclipse Arrowhead framework can be viewed as a series of database tables that have to be linked with each other.
+One can view the Eclipse Arrowhead framework as a series of database tables to connect.
 %Clarification of tables.
 One table relevant to all the core systems is the service\_interface table.
 It correlates a connection interface, i.e., HTTP-INSECURE-JSON, HTTP-SECURE-JSON, and HTTPS-SECURE-JSON, to a specific ID used later on.
@@ -52,7 +52,7 @@ The tables in the Arrowhead database relevant to the service registry system are
 \subsection{Authorization system tables}
 The tables in the Arrowhead database relevant to the authorization system are
 \begin{itemize}
-    \item authorization\_intra\_cloud,  adds authorization rules for the provider, consumer, and service definition. Dictates which consumers are allowed to connect to which providers and the services they are allowed to use.
+    \item authorization\_intra\_cloud,  adds authorization rules for the provider, consumer, and service definition. Dictates which consumers are allowed to connect to which providers.  It also dictates the services the consumer is allowed to use.
     \item authorization\_intra\_cloud\_interface\_connection correlates an intracloud authorization ID to an interface ID.
 \end{itemize}
 \subsection{Orchestration system tables}
@@ -64,7 +64,7 @@ The tables in the Arrowhead database relevant to the orchestrator system are
 %SWAGGER
 \section{Swagger UI}
 The Eclipse Arrowhead framework has integrated Swagger UI into their core services. 
-This means that the databases can be accessed and altered using HTTP methods instead of SQL queries.
+Meaning that the databases can be accessed and altered using HTTP methods instead of SQL queries.
 Each core system has its swagger UI page, which serves as a visual, user-friendly REST API. 
 A REST API, Representational state transfer, is a way to structure an API and consists of the following main principles according to Wikipedia.\cite{WIKIREST2021}
 \begin{itemize}
@@ -77,21 +77,21 @@ A REST API, Representational state transfer, is a way to structure an API and co
         \item DELETE deletes a resource state.
     \end{itemize}
 \end{itemize}
-Instead of sending SQL-queries, the Swagger UI also enables the use of JSON, JavaScript Object Notation, and the construction of theses will be covered in the implementation section.
+Instead of sending SQL-queries, the Swagger UI uses JSON, JavaScript Object Notation, and how we should construct these will be covered in the implementation section.
 %ARM MBED
 \section{ARM Mbed}
 %Intro
-The  STM 32 board needs to be connected to the internet to enable the use of the Swagger UI. 
+The  STM 32 board needs to be connected to the internet to use the Swagger UI. 
 The ARM mbed OS 6 provides the functionality needed for this. 
 
 %Foundations
-Mbed OS 6 uses a hardware abstraction layer, HAL, to enable the essential parts of a microcontroller, such as timers.
-Using hardware supported by Mbed OS 6 libraries, drivers, and, support for standard peripherals for microcontrollers are automatically imported upon compilation.
+Mbed OS 6 uses a hardware abstraction layer, HAL, to enable the microcontroller's most essential parts, such as timers.
+When compiling your code,  libraries, drivers, and support for standard peripherals for microcontrollers are imported when using hardware supported by the Mbed OS 6.
 This foundation enables the user to write applications against a shared set of APIs.
 Another advantage of using supported hardware is the retargeting layer and boot process integration, so application development feels similar to C or C++ development.
 
 %Connectivity
-ARM Mbed OS enables the user to use a range of connectivity tools and suits. In this thesis, Wi-Fi is used, but there is support for Bluetooth, NFC, and much more.
+ARM Mbed OS enables the user to use a range of connectivity tools and suits. This thesis uses Wi-Fi, but there is support for Bluetooth, NFC, and much more on the STM32 B-L4S5I-IOT01A board.
 Mbed OS connectivity and network stack offer a stable core of existing connectivity technologies, perfect for even the most demanding and versatile IoT applications. 
 
 %Compilation - Expand this?
@@ -105,10 +105,10 @@ Due to the vastly different implementation of the three frameworks, Amazon Web S
 
 %Measurement
 The Test-Connection command in power-shell sends four 32-bit packets to the specified destination. 
-This will be iterated 250 times, resulting in 1000 measured values that are significant enough to produce an average response time.
+Iterating the Test-Connection 250 times gives us 1000 samples, a sufficient amount of attempts to produce an average response time.
 The average is calculated with $\frac{\sum \text{response times}}{\text{number of response times}}$.
-In addition to presenting the average response time, the maximum and minimum response times will be calculated to give further understanding of the performance of the different frameworks. 
-The results of these calculations will be presented in detail in Chapter 5.
+In addition to presenting the average response time, we will calculate the maximum and minimum response times to understand the different frameworks' performance further. 
+The results of these calculations one can read in detail in Chapter 5.
 
 
 
