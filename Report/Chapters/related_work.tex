@@ -1,4 +1,5 @@
 \section{Internet of things}
+%Write an introduction to this and choose ONE quote.
 Cluster of European research projects regarding the Internet of Things:
 \begin{quote}
     'Things' are active participants in business, information and social processes where they are enabled to interact and communicate among themselves and with the environment by exchanging data and information sensed about the environment while reacting autonomously to real/physical world events and influencing it by running processes that trigger actions and create services with or without direct human intervention.\cite{Gubbi2013}
@@ -8,7 +9,7 @@ Cluster of European research projects regarding the Internet of Things:
 Gubbi et al. define the Internet of Things as:
 \begin{quote}
     Interconnection of sensing and actuating devices providing the ability to share information across platforms through a unified framework, developing a common operating picture for enabling innovative applications. 
-    This is achieved by seamless large scale sensing, data analytics, and information representation using cutting edge ubiquitous sensing and cloud computing.\cite{Gubbi2013}
+    Achieved by seamless large scale sensing, data analytics, and information representation using cutting edge ubiquitous sensing and cloud computing.\cite{Gubbi2013}
 \end{quote}
 
 \section{Industry 4.0}
@@ -23,7 +24,7 @@ See figure x for a short historic overview of previous industrial revolutions.
     \label{Indutrial revolutions}
 \end{figure}
 
-According to Vaidya, industry 4.0 promotes the connection of sensors and devices to the internet and other sensors or devices.\cite{Vaidya2018} 
+According to Vaidya, industry 4.0 promotes connecting sensors and devices to the internet and other sensors or devices.\cite{Vaidya2018} 
 
 %Intelligent sensors.
 Hozdić states that a sensor is a device capable of providing an appropriate output in response to a measured value.
@@ -33,19 +34,19 @@ An Intelligent sensor  is capable of executing actions based on the measured val
 %Cyber Physical Systems (CPS).
 Hozdić defines a cyber-physical system, CPS, as a new generation of a system that integrates physical and computer abilities.
 A cyber-physical system consists of two parts, one cybernetic and one physical.
-The cybernetic part of the system can be viewed as a summation of logic and sensor units, while the physical part of the system can be viewed as a summation of the actuator units, Hozdić adds.
+The cybernetic aspect of the system is a summation of logic and sensor units. In contrast, the physical part of the system is the summation of the actuator units, Hozdić adds.
 Xu et al. state that cyber-physical systems are a vital part of Industry 4.0. In contrast to the simple embedded systems of today will be exceeded due to advances in CPS that enable enhanced capability, scalability, adaptability, resiliency, safety, usability, and security.\cite{Xu2018}
-Hozdić argues that the CPS can share and receive information from intelligent sensors that connect to digital networks, enabling and forming an internet of things.\cite{Hozdic2015}
+Hozdić argues that the CPS can share and receive information from intelligent sensors connected to digital networks, enabling and forming an internet of things.\cite{Hozdic2015}
  
 \section{Arrowhead framework}
 %Local cloud.
-A local cloud is defined as a self-contained network with at least the three mandatory systems deployed, more on those in a later paragraph. 
+Delsing defines a local cloud as a self-contained network with at least the three mandatory systems deployed, more on those in a later paragraph. 
 Delsing et al. also argue that the three mandatory core systems running a local cloud also need at least one application system deployed.\cite{Delsing2017}
 
 %Service and systems.
-Two terms must be introduced to understand further what the Eclipse Arrowhead framework aims to accomplish, services and systems.
+To further understand what the Eclipse Arrowhead framework aims to accomplish, introducing the terms services and systems is necessary.
 Delsing et al. define a system as providing or consuming a service.
-Furthermore, a service is defined as conveying information between a provider and a consumer, Delsing et al. argues.\cite{Delsing2017}
+Furthermore, Delsing et al. define a service as conveying information between a provider and a consumer.\cite{Delsing2017}
 
 %Mandatory core systems.
 The Eclipse Arrowhead framework, Arrowhead from now on, consists of three mandatory core systems according to Delsing et. al.
@@ -87,26 +88,26 @@ The Rules engine connects data from the message broker to other AWS services, su
 \section{Security}
 %Introduction.
 Meneghello et al. argue that the increasing number of IoT devices and the pervasive nature of new smart home or healthcare devices can pose a real threat to the users' integrity.
-Sensitive information Meneghello et al. defines as a video recording of the user's home, the user's location, access to buildings, health monitoring, and industrial processes.\cite{Meneghello2019}
+Meneghello et al. define sensitive information as a video recording of the user's home, location, access to buildings, health monitoring, and industrial processes.\cite{Meneghello2019}
 
 %Secruity challenges.
-Meneghello et al. state that the security requirements of an IoT system can be divided into three different operational levels, namely the information, access, and functional level.
-The information level should guarantee that the integrity, anonymity, confidentiality, and privacy of the system are preserved. 
-Meaning that messages should not be altered during transmission. The identity of the data source and the clients' private information remains hidden. Third parties cannot read that data, Meneghello et al. argue.
-The access level guarantees that only legitimate users are allowed access to the network and the devices associated with that network. 
+Meneghello et al. divide the security requirements of an IoT system into three different operational levels: the information, access, and functional level.
+The information level should guarantee the preservation of the system's integrity, anonymity, confidentiality, and privacy. 
+To maintain integrity, no alteration of the messages can occur during transmission. The identity of the data source and the clients' private information remains hidden. Third parties cannot read that data, Meneghello et al. argue.
+The access level guarantees that only legitimate users can access the network and the devices associated with that network. 
 It also guarantees that users within the network only use resources they can use, Meneghello et al. state.
 The functional level should guarantee the continued functionality of a network even in the case of malfunction or a malicious attack, Meneghello et al. add.\cite{Meneghello2019}
 
 %Pricacy.
 Zhang also argues that privacy is a big concern with IoT devices and suggests two solutions data collection policy and data anonymization.
-A policy that describes how the data is collected from the devices would restrict data flow, therefore ensuring privacy preservation can be ensured, Zhang states.
-Data anonymization means that private information sent by the IoT devices is either encrypted or that the relation of the data and its owner is concealed according to Zhang.\cite{Zhang2014}
+A policy that describes how data collected from the devices would restrict data flow, ensuring privacy preservation, Zhang states.
+Data anonymization means that private information sent by the IoT devices is either encrypted or conceals the relation of the data and its owner according to Zhang.\cite{Zhang2014}
 
 %Encryption.
 Meneghello et al. argue that one of the main aspects of security within IoT is to ensure that the data sent is the data received and that the data has not been tampered with or read during transmission.
-The most critical operation to guarantee is the use of encryption, which converts the message sent in plain text to an encrypted message only readable with a decryption key, Meneghello et al. state.
+The most critical operation to guarantee is encryption, which converts the message sent in plain text to an encrypted message only readable with a decryption key, Meneghello et al. state.
 Meneghello et al. state that there are two mechanisms for encryption, symmetric and asymmetric.
-Symmetric encryption is when the same key is used for encryption and decryption, so it has to be shared with both the sender and receiver.
+Symmetric encryption uses the same key for encryption and decryption, sharing it with both the sender and receiver.
 On the other hand, asymmetric encryption only shares the public key, and the sender and receiver have their private keys Meneghello et al. means.\cite{Meneghello2019}
 
 %End-to-End encryption.
@@ -133,13 +134,13 @@ On the other hand, a client publishes a message to the broker that other clients
 HTTP, HyperText Transfer Protocol, is a request/response protocol consisting of clients and servers that communicate by exchanging individual messages. 
 The clients are responsible for the requests, and the servers are responsible for the response Mozilla developer network clarifies. \cite{HTTP2021} 
 In contrast to the lightweight MQTT protocol with low overhead and bandwidth, HTTP can cause serious bandwidth issues, Wukkadada adds. \cite{Wukkadada2018}
-The most significant benefits to using HTTP are that it supports the RESTful Web architecture and that it is a globally accepted web messaging standard Naik suggests. \cite{Naik2017} 
+The most significant benefits to using HTTP are that it supports the RESTful Web architecture and a globally accepted web messaging standard Naik suggests. \cite{Naik2017} 
 
 %Comparisson 
 Naik argues that HTTP exceeds MQTT in message size, message overload, power consumption, resource requirements, bandwidth, and latency. 
-All things that are considered negative for a protocol.
+All things that are considered adverse for a protocol.
 On the other hand, HTTP exceeds MQTT in interoperability, standardization, security, and provisioning, Naik adds.\cite{Naik2017}
 All things that are considered positive for a protocol.
-Shariatzadeh argues that that HTTP may be expansive for many IoT devices, but it can be beneficial due to the interoperability since it is developed for the web originally.\cite{Shariatzadeh2016}
-Wukkadada also points out the lower power consumption of the MQTT protocol but adds that the more verbose HTTP protocol can be easier for developers to understand.
+Shariatzadeh argues that that HTTP may be expansive for many IoT devices, but it can be beneficial due to the interoperability since initially developed for the web.\cite{Shariatzadeh2016}
+Wukkadada also points out the lower power consumption of the MQTT protocol but adds that the more lengthy HTTP protocol can be easier for developers to understand.
 Wukkada drives home the point of choosing MQTT for IoT devices.\cite{Wukkadada2018}
