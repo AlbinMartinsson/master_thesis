@@ -1,33 +1,34 @@
 %overview
-The system consists of three major parts, the provider on the stm32 board, a Python flask app as a consumer, and the Eclipse Arrowhead framework.
+The system consists of three major parts: the stm32 board, a Python flask app, and the Eclipse Arrowhead framework.
 The main objective of the Eclipse Arrowhead framework is to connect the consumer and the provider in a safe and structured way.
 The provider is built with C/C++ using ARMs' mbed os, and mainly the mbed-http library. 
 \section{System architecture}
 \subsection{Services}
 The provider offers two services to the consumer. 
 The first one is sending the temperature from the LPS22HB temperature and pressure sensor. 
-The service URI of this service is /temperature, and when performing a GET request, the temperature reading will be returned as an integer.
-A sequence diagram visualizing how the temperature service is implemented.
+The service URI of this service is /temperature, which will send the temperature reading as an integer.
+A sequence diagram illustrating the implementation of the temperature service.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{Pictures/sequence_diagram_consumer.pdf} 
+    \includegraphics[width=\textwidth, height=6cm]{Pictures/sequence_diagram_consumer.pdf} 
     \caption{Sequence diagram of the process of connecting the consumer and provider through the temperature service.}
     \label{sequence diagram consumer}
 \end{figure}
-The second one is turning on and off a LED based on the state of that LED.
-The service URI of this server is /LED, and the desired state of the LED, ON or OFF, is specified in the payload of that call.
-It returns the new state of the LED and performs that action on the LED.
-A sequence diagram was drawn to visualize how the LED service was implemented.
+The second service is turning on and off a LED based on the state of that LED.
+The service URI of this service is /LED, and the desired state of the LED can be ON or OFF. 
+The service will send the current state of the LED to the consumer, and the consumer inverts the state and returns it to the provider.
+The provider acts on that action, turning the LED on or off. 
+The sequence diagram below shows how the implementation of this service.
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=\textwidth]{Pictures/sequence_diagram_consumer.pdf} 
+    \includegraphics[width=\textwidth, height=7cm]{Pictures/sequence_diagram_consumer2.pdf} 
     \caption{Sequence diagram of the process of connecting the consumer and provider through the LED service.}
-    \label{sequence diagram consumer}
+    \label{sequence diagram consumer2}
 \end{figure}
 
 \subsection{Sequence of execution}
-Since the core systems are dependent on each other, the order of execution of the queries to the database matters a lot.
-To have the board act as a part of an Arrowhead system and registering that to the local cloud, the following order of execution has to be used.
+Since the core systems are dependent on each other, the order of the queries to the database matters a lot.
+The board must follow this order to successfully interact with the Eclipse Arrowhead framework local cloud core systems. 
 \begin{itemize}
     \item Register provider.
     \item Register consumer.
@@ -36,6 +37,7 @@ To have the board act as a part of an Arrowhead system and registering that to t
     \item Create an orchestration store entry.
     \item Recieve orchestration information based on consumer ID.
 \end{itemize}
+\newpage
 A sequence diagram visualizing the order of execution in the core systems.
 \begin{figure}[H]
     \centering
@@ -51,10 +53,10 @@ Based on the architecture described in the previous section, it is clear that th
     \item Constructing correct JSON strings to act as payload in the POST and GET methods. 
 \end{itemize}
 \subsection{HTTP post using the mbeb-HTTP library}
-The first function performs an HTTP post with a constructed JSON body as a payload.
+The first function performs an HTTP post with a constructed JSON body.
 It does that with the help of the network interface object defined in the setup and sends that post to the appropriate URL.
 \begin{lstlisting}[style=CStyle]
-    std::string http_post_request_with_response(NetworkInterface* _net, std::string url, std::string body)
+    std::string http_post_request_with_response(NetworkInterface* _net, std::string URL, std::string body)
     {
         HttpRequest *post_request = new HttpRequest(_net, HTTP_POST, url.c_str());
         post_request->set_header("Content-Type", "application/json");
@@ -69,12 +71,12 @@ It does that with the help of the network interface object defined in the setup 
         return response_body;
     }
 \end{lstlisting}
-\subsection{HTTP get using the mbeb-http library}
-The second function is similar to the first one with the main difference that it performs an HTTP get with a JSON payload.
+\subsection{HTTP get using the mbeb-HTTP library}
+The second function is similar to the first one, with the main difference that it performs an HTTP get with a JSON payload.
 It also uses the network interface to send it to the appropriate URL.
 It does that with the help of the network interface object defined in the setup and sends that post to the appropriate URL.
 \begin{lstlisting}[style=CStyle]
-std::string http_get_request_with_response(NetworkInterface* _net, std::string url)
+std::string http_get_request_with_response(NetworkInterface* _net, std::string URL)
 {
     HttpRequest *get_request= new HttpRequest(_net, HTTP_GET, url.c_str());
 
@@ -102,12 +104,12 @@ The previously defined provider system is passed as a parameter here an interfac
 \begin{lstlisting}[style=CStyle]
     std::string register_service_body = "{\"serviceDefinition\": \"service_definition\", \"providerSystem\": {\"systemName\": \"system_name\", \"address\": \"192.168.0.101\", \"port\": 1234, \"authenticationInfo\": \"\" }, \"interfaces\": [\"HTTP-INSECURE-JSON\"], \"serviceUri\": \"temperature\"}\r\n";
 \end{lstlisting}
-These three calls should all be made to the service registry core system.
+The board has to make the three above calls to the service registry core system.
 
 To create intracloud rules, provider, consumer, and service definition ids must be passed as parameters.
-Two helper functions were implemented to achieve this.
-The first one parses the response from registering a system, finds the substring containing the systems id and returns that as a character pointer.
-The second one parses the response from registering a service, finds the substring containing the service definition id, and returns that as a character pointer.
+One implemented two helper functions to achieve this.
+The first one parses the response from registering a system, finds the substring containing the systems id, and returns that as a character pointer.
+The second one parses the response from registering a service, finds the substring containing the service definition id and returns that as a character pointer.
 The field interfaceIds can be looked up in the table system\_interface in the Arrowhead database and should correlate with the selected interface.
 \begin{lstlisting}[style=SQLstyle]
 +----+--------------------+---------------------+---------------------+
@@ -123,22 +125,23 @@ The correct JSON can now be constructed and posted to the authorization core sys
     std::string add_intracloud_authorization_body = "{\"consumerId\": " + std::to_string(consumer_id) + ",\"interfaceIds\": [3], \"providerIds\": [" + std::to_string(provider_id) + "], \"serviceDefinitionIds\": [" + std::to_string(service_id) + "]}\r\n";
 \end{lstlisting}
 
-The previously defined consumer and provider system and the consumer id have to be provided to create an orchestration store rule. 
+The request to create an orchestration store rule must contain information about the previously defined provider system and the consumer systems id.
 Information about the operating cloud and interface has to be defined, and posted to the orchestrator core system.
 \begin{lstlisting}[style=CStyle]
 std::string create_orchestration_store_body = "[{ \"serviceDefinitionName\": \"service_definition\", \"consumerSystemId\": " + std::to_string(consumer_id) + ", \"providerSystem\": { \"systemName\":  \"system_name\", \"address\": \"192.168.0.101\", \"port\": 1234, \"authenticationInfo\": \"\"}, \"cloud\": { \"operator\": \"aitia\", \"name\": \"testcloud2\" }, \"serviceInterfaceName\": \"HTTP-INSECURE-JSON\", \"priority\": 1}]\r\n";
 \end{lstlisting}
 A get request is sent to the orchestrator with the consumer's id as a parameter.
-The response from the orchestrator contains information about the address, port, and service URI of the provider the consumer wants to connect to.
-To parse the response from the orchestrator, a helper function was created. It takes the response as a parameter and returns the address, port, and service URI as a string.
+The response from the orchestrator contains information about the address, port, and service URI of the provider the consumer wants to create a connection to.
+A helper function parsed the response from the orchestrator.
+The helper function takes the response as a parameter and returns the address, port, and service URI as a string.
 If every step is successful, the consumer can connect to the provider.
 
 \section{Error handling}
 %Fix this
-From the sequence diagram above, it can be seen that the success of each subsequent operation is dependent on the success of the previous one.
-Without adequately defined and registered systems, a service definition can not be registered. If one command fails, the chain of commands is broken.
+The sequence diagram, \ref{sequence diagram whole process}, above shows that each subsequent operation's success depends on the success of the previous one.
+Without adequately defined and registered systems, the board can not register a service definition. If one command fails, 
 The commands will still execute but return an appropriate error code and error message describing the error.
 
 For instance, a provider system with the same name as a previous one in the database is trying to register itself to the service registry.
-This will throw an error stating that such a system already exists and not return the system id, which will cause the command to add intracloud rules to fail since the id of the provider system is required. 
-The orchestrator can not be performed if the systems are not authorized correctly, causing the GET method to the orchestrator returning a blank response, which causes the consumer not to be able to connect to a provider.
+The service registry will throw an error stating that such a system already exists and not return the system id, which will cause the command to add intracloud rules to fail since the id of the provider system is required. 
+The orchestrator can not perform the orchestration process if the systems are not authorized correctly.  In that case, the GET method to the orchestrator will return a blank response and make the connection to the provider impossible. 
