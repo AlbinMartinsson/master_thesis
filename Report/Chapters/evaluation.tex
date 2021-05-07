@@ -2,23 +2,23 @@
 The objective of this thesis was to investigate the possibilities, benefits, and limitations of using the Eclipse Arrowhead framework on embedded devices in contrast to commercially available solutions such
 as Amazon's Amazon Web Services and Microsoft Azure. 
 The previous chapter showed that it was possible to connect the STM32 B-L4S5I-IOT01A to an Eclipse Arrowhead framework local cloud.
-Tests to figure out which IoT framework had the shortest response time were carried out and the results of those will be presented later on in this chapter.
+Tests to figure out which IoT framework had the shortest response time carried out, and the results of those will be presented later on in this chapter.
 %Arrowhead framework
+
 \section{Incorporating an Eclipse Arrowhead framework local cloud}
-For the implementation to be seen as successful it has to be able to connect the system and services in compliance with the Eclipse Arrowhead framework.
-It has to be able to send the temperature data from the STM32 B-L4S5I-IOT01A board to the flask app running on another device.
-The implementation should be easy to use which due to the use of an online compiler and the ability to import the code, requiring minimal setup for the end-user, proved to be the case.  
+We can deem the implementation successful if it manages to connect the system and services in agreement with the Eclipse Arrowhead framework.
+It has to send the temperature data from the STM32 B-L4S5I-IOT01A board to the flask app running on another device.
+The implementation should be easy to use, which due to the use of an online compiler and the ability to import the code, requiring minimal setup for the end-user, proved to be the case.  
 The implementation presented in the previous section managed to do that successfully.
 
-Based on the previous section it seems possible to successfully use an Eclipse Arrowhead local cloud together with an embedded device connected to the internet. 
-The benefits of using the Eclipse Arrowhead framework will be presented in the next chapter which presents the test results. 
-The limitations of using the Eclipse Arrowhead framework will be covered in the next chapter.
-
+Based on the previous section, it seems possible to successfully use an Eclipse Arrowhead local cloud and an embedded device connected to the internet. 
+The subsequent section will present the test results, showcasing the benefits of using the Eclipse Arrowhead framework.
+The next chapter will also cover the limitations of using the Eclipse Arrowhead framework in the next chapter.
 
 %Test results
 \section{Performance test result}
-The performance measurement, as described in the theory section, pinged the different IoT framework 1000 times and calculated the average, minimum and maximum response times. 
-Line diagrams of the response time and average response time are presented below for the different IoT frameworks are presented below.
+As described in the theory section, the test consisted of pinging the different IoT framework 1000 times and calculated the average, minimum and maximum response times. 
+Line diagrams of the response time and average response time are presented below for the different IoT frameworks are shown below.
 \begin{figure}[h!]
     \centering
     \includegraphics[width=\textwidth]{Pictures/AWS_response_time.png} 
@@ -47,7 +47,7 @@ To give a clearer picture of the results in the test te following table was cons
 \end{center}
 The table above shows that the Eclipse Arrowhead framework has the shortest average response time, 17.5 times faster than Amazon Web Services. 
 The table also shows that Amazon Web Services has a max response time  1.9 times greater than the Eclipse Arrowhead framework.
-The largest difference can be seen in the minimum response time where the Eclipse Arrowhead framework is 134 times faster than Amazon Web Services.
-The advantages of having a lower response time will be covered in the next chapter.
+We can see the most considerable difference occurs in the minimum response time, where the Eclipse Arrowhead framework is 134 times faster than Amazon Web Services.
+The subsequent chapter will cover the advantages of having a quicker response time.
 
 
