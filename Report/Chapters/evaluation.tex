@@ -19,6 +19,7 @@ The next chapter will also cover the limitations of using the Eclipse Arrowhead 
 \section{Performance test result}
 As described in the theory section, the test consisted of pinging the different IoT framework 1000 times and calculated the average, minimum and maximum response times. 
 Line diagrams of the response time and average response time are presented below for the different IoT frameworks are shown below.
+Microsoft Azure could not be pinged due to Microsofts fear of DDOS attacks, but the comparisson of a remote server versus a local one still applies.  
 \begin{figure}[h!]
     \centering
     \includegraphics[width=\textwidth]{Pictures/AWS_response_time.png} 
@@ -37,11 +38,11 @@ To give a clearer picture of the results in the test te following table was cons
 \begin{center}
     \begin{tabular}{||c|c|c|c||}
         \hline
-        Parameters & AWS & Arrowhead & Azure  \\
+        Parameters & AWS & Arrowhead \\
         \hline\hline
-        Average response time(ms) & 166.94 & 9.5105 & 0\\
-        Max response time(ms) & 717 & 372 & 0 \\
-        Min response time(ms) & 134 & 1 & 0 \\
+        Average response time(ms) & 166.94 & 9.5105 \\
+        Max response time(ms) & 717 & 372 \\
+        Min response time(ms) & 134 & 1 \\
         \hline
     \end{tabular}
 \end{center}

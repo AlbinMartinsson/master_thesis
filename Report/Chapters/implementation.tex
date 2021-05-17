@@ -16,7 +16,7 @@ A sequence diagram illustrating the implementation of the temperature service.
 \end{figure}
 The second service is turning on and off a LED based on the state of that LED.
 The service URI of this service is /LED, and the desired state of the LED can be ON or OFF. 
-The service will send the current state of the LED to the consumer, and the consumer inverts the state and returns it to the provider.
+The service sends the current state of the LED to the consumer, and the consumer inverts the state and returns it to the provider.
 The provider acts on that action, turning the LED on or off. 
 The sequence diagram below shows how the implementation of this service.
 \begin{figure}[h!]

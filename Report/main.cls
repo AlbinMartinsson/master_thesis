@@ -224,7 +224,7 @@
     {\hspace{-0.7cm}}
     {\hfill\contentspage}
  
-    {\small\tableofcontents}
+    {\footnotesize\tableofcontents}
    \clearpage{\thispagestyle{empty}\cleardoublepage}
    }
  %--- Include preface
@@ -442,6 +442,7 @@
    \fancyhead[LO]{\sc{\nouppercase{\rightmark}}}
    \fancyhead[LE]{\thepage} 
    \fancyhead[RO]{\thepage}
+   
 }
 
 % ------------------------------------------
@@ -488,6 +489,7 @@
     \hrule
     \addcontentsline{toc}{chapter}{\sc References}
     \putbib
+    \label{references}
     \cleardoublepage
 }
 

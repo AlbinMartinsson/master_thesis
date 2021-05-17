@@ -1,8 +1,10 @@
 %INTRO
-The theory behind the implementation in this thesis consists of performing correct SQL queries to appropriate tables in the Eclipse Arrowhead framework database with the help of Swagger UI REST API.
+This chapter covers the theory needed to understand the implementation in chapter \ref{ch4}. 
+It covers the Eclipse Arrowhead frame more in depth than chapter \ref{ch2} did.
+This chapter covers how the Eclipse Arrowhead framework is built up and how the end user can interact with the framework in the best possible way.
+The end of this chapter describes a test for measuring performance between the different IoT frameworks.
 %AHF
 \section{Eclipse Arrowhead framework} 
-
 %Mandatory core systems.
 As mentioned in the related work section, the Eclipse Arrowhead framework consists of three mandatory core systems
 \begin{itemize}
@@ -106,9 +108,21 @@ Due to the vastly different implementation of the three frameworks, Amazon Web S
 %Measurement
 The Test-Connection command in power-shell sends four 32-bit packets to the specified destination. 
 Iterating the Test-Connection 250 times gives us 1000 samples, a sufficient amount of attempts to produce an average response time.
-The average is calculated with $\frac{\sum \text{response times}}{\text{number of response times}}$.
+The results from the Test-Connection is saved in a .csv file using the Export-Csv command. 
+The Get-Content command then imports the saved data from the .csv file to keep all results through the whole loop.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Pictures/powershell.png} 
+    \caption{The powershell script for generating the test data.}
+    \label{powershell}
+\end{figure}
+
+The average is calculated with
+\begin{equation*}
+    \text{average response time} = \frac{\sum \text{response times}}{\text{number of response times}}
+\end{equation*} 
 In addition to presenting the average response time, we will calculate the maximum and minimum response times to understand the different frameworks' performance further. 
-The results of these calculations one can read in detail in Chapter 5.
+The results of these calculations one can read in detail in chapter \ref{ch5}.
 
 
 

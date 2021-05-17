@@ -33,6 +33,10 @@ Mbed online compiler, on the other hand, builds everything in the browser.
 When the build finishes, the Mbed online compiler prompts the user to download a .bin file that can be dragged to the STM32 B-L4S5I-IOT01A board, as if storing a file on a flash drive.
 The STM32 B-L4S5I-IOT01A board compiles the .bin file and outputs the result to the user, no need to install Cmake or other toolchains. 
 
+Another advantage of using STM cube IDE is debugging. 
+STM cube IDE supports debugging with breakpoints, allowing the user to inspect registers when developing.
+Mbed online compiler on the other hand has no support for debugging, making bug fixing tedious.
+
 \section{Provider arcitechture}
 The implementation in this thesis follows the publish/subscribe model, as described in the related work section. 
 The STM32 B-L4S5I-IOT01A board is the publisher, and the remote computer will act as the subscriber.
