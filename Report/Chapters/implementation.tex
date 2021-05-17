@@ -38,7 +38,7 @@ The board must follow this order to successfully interact with the Eclipse Arrow
     \item Recieve orchestration information based on consumer ID.
 \end{itemize}
 \newpage
-A sequence diagram visualizing the order of execution in the core systems.
+The sequence diagram belows visualizes the order of execution in the core systems.
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{Pictures/sequence_diagram_total.pdf} 
@@ -100,7 +100,8 @@ To register a system, consumer, or provider, a body similar to the one defined u
 \end{lstlisting}
 
 The next operation is to register a service, and just as when registering a system, a correct JSON payload is required.
-The previously defined provider system is passed as a parameter here an interface, has to be defined as well.
+The previously defined provider system is passed as a parameter.
+An interface has to be defined as well.
 \begin{lstlisting}[style=CStyle]
     std::string register_service_body = "{\"serviceDefinition\": \"service_definition\", \"providerSystem\": {\"systemName\": \"system_name\", \"address\": \"192.168.0.101\", \"port\": 1234, \"authenticationInfo\": \"\" }, \"interfaces\": [\"HTTP-INSECURE-JSON\"], \"serviceUri\": \"temperature\"}\r\n";
 \end{lstlisting}
@@ -120,7 +121,7 @@ The field interfaceIds can be looked up in the table system\_interface in the Ar
 |  3 | HTTPS-SECURE-JSON  | 2021-02-16 17:45:57 | 2021-02-16 17:45:57 |
 +----+--------------------+---------------------+---------------------+
 \end{lstlisting}
-The correct JSON can now be constructed and posted to the authorization core system.
+The correct JSON can now be constructed and then posted to the authorization core system.
 \begin{lstlisting}[style=CStyle]
     std::string add_intracloud_authorization_body = "{\"consumerId\": " + std::to_string(consumer_id) + ",\"interfaceIds\": [3], \"providerIds\": [" + std::to_string(provider_id) + "], \"serviceDefinitionIds\": [" + std::to_string(service_id) + "]}\r\n";
 \end{lstlisting}
@@ -140,7 +141,7 @@ If every step is successful, the consumer can connect to the provider.
 %Fix this
 The sequence diagram, \ref{sequence diagram whole process}, above shows that each subsequent operation's success depends on the success of the previous one.
 Without adequately defined and registered systems, the board can not register a service definition. If one command fails, 
-The commands will still execute but return an appropriate error code and error message describing the error.
+the remaning commands will still execute but return an appropriate error code and error message describing the error.
 
 For instance, a provider system with the same name as a previous one in the database is trying to register itself to the service registry.
 The service registry will throw an error stating that such a system already exists and not return the system id, which will cause the command to add intracloud rules to fail since the id of the provider system is required. 

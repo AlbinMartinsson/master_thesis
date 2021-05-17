@@ -8,18 +8,19 @@ Tests to figure out which IoT framework had the shortest response time carried o
 \section{Incorporating an Eclipse Arrowhead framework local cloud}
 We can deem the implementation successful if it manages to connect the system and services in agreement with the Eclipse Arrowhead framework.
 It has to send the temperature data from the STM32 B-L4S5I-IOT01A board to the flask app running on another device.
-The implementation should be easy to use, which due to the use of an online compiler and the ability to import the code, requiring minimal setup for the end-user, proved to be the case.  
+The implementation should be easy to use and require minimal setup.
+Due to the use of an online compiler and the ability to import the code, proved to be the case.  
 The implementation presented in the previous section managed to do that successfully.
 
 Based on the previous section, it seems possible to successfully use an Eclipse Arrowhead local cloud and an embedded device connected to the internet. 
 The subsequent section will present the test results, showcasing the benefits of using the Eclipse Arrowhead framework.
-The next chapter will also cover the limitations of using the Eclipse Arrowhead framework in the next chapter.
+The next chapter will cover the limitations of using the Eclipse Arrowhead framework.
 
 %Test results
 \section{Performance test result}
 As described in the theory section, the test consisted of pinging the different IoT framework 1000 times and calculated the average, minimum and maximum response times. 
 Line diagrams of the response time and average response time are presented below for the different IoT frameworks are shown below.
-Microsoft Azure could not be pinged due to Microsofts fear of DDOS attacks, but the comparisson of a remote server versus a local one still applies.  
+One could not ping Microsoft Azure due to Microsoft's fear of DDOS attacks, but the comparison of a remote server versus a local one still applies.  
 \begin{figure}[h!]
     \centering
     \includegraphics[width=\textwidth]{Pictures/AWS_response_time.png} 

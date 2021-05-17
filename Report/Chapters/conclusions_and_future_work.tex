@@ -1,5 +1,5 @@
 This chapter summarizes the thesis by outlining its accomplishments and remaining work left to do.
-Section 7.1 contains the conclusion, and in section 7.2. the reader can find a description of work to be done in the future.
+Section 7.1 contains the conclusion, and in section 7.2 the reader can find a description of work to be done in the future.
 \section{Conclusion}
 This thesis examines the possibility of using an Eclipse Arrowhead framework local cloud on an embedded device, namely the STM32 B-L4S5I-IOT01A board. 
 It was possible to implement functionality for the Eclipse Arrowhead framework on the STM32 B-L4S5I-IOT01A board, having the board send temperature readings to a computer within a local network.
@@ -9,7 +9,8 @@ The implementation was done with usability in mind, making it easy for users to 
 The desired usability was achieved with the Mbed online compiler's code importation and minimum setup development environment, allowing users to try out the Eclipse Arrowhead framework on the STM32 B-L4S5I-IOT01A board.
 
 The thesis also examines the benefits of using the Eclipse Arrowhead framework compared to its competitors Amazon Web Services and Microsoft Azure.
-The thesis showed some benefits in terms of response time when running a local cloud instead of using a remote service such as Amazon Web Services, a 17.5 decrease in average response time was recorded.
+The thesis showed some benefits in terms of response time when running a local cloud instead of using a remote service such as Amazon Web Services. 
+A 17.5 decrease in average response time was recorded.
 Maximum and minimum response times decreased by 1.9 and 134 times, respectively.  
 
 \section{Future work}
@@ -22,7 +23,7 @@ The following sections will address these two issues.
 We have to address the security issues raised in the previous chapters if the implementation done in this thesis ever is to be used by the industry in production. 
 This thesis made several attempts at implementing HTTPS; the Mbed-HTTP library has support for HTTPS, and STM cube IDE has support for wolfSSL. 
 
-The problem to be solved before implementing HTTPS is how the Eclipse Arrowhead framework handles certificates in languages other than  Java.
+The problem to be solved before implementing HTTPS is how the Eclipse Arrowhead framework handles certificates in programming languages other than Java.
 Both Mbed and STM cube has examples using HTTPS that works, and getting started with Amazon Web Services uses HTTPS with a user-generated certificate.
 One of the main issues is that the certificates are self-signed, meaning no trusted certificate authority has signed them. 
 The self-signed certificates proved to be the main obstacle for implementing HTTPS using C. None of the libraries, Mbed-HTTP or wolfSSL, could trust the certificate from the Eclipse Arrowhead framework.
@@ -33,7 +34,7 @@ A concept that quickly becomes unbearable when dealing with thousands of devices
 
 \subsection{Server implementation}
 %Server implementation.
-Before being appliable to the industry, one would have to solve the matter of the board's inability to react to requests. 
+Before being appliable to the industry, one would have to solve the board's inability to react to requests. 
 The issue of reacting to requests is of utmost importance. 
 Both the Mbed online compiler and the STM Cube IDE have a working example of an HTTP server that can request the temperature data from a generated webpage.
 Those examples use pure HTTP requests and responses, leading to very lengthy and challenging messages to parse. 

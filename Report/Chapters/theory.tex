@@ -1,8 +1,8 @@
 %INTRO
 This chapter covers the theory needed to understand the implementation in chapter \ref{ch4}. 
-It covers the Eclipse Arrowhead frame more in depth than chapter \ref{ch2} did.
-This chapter covers how the Eclipse Arrowhead framework is built up and how the end user can interact with the framework in the best possible way.
-The end of this chapter describes a test for measuring performance between the different IoT frameworks.
+It covers the Eclipse Arrowhead framework more in-depth than chapter \ref{ch2} did.
+This chapter covers the fundamentals of the  Eclipse Arrowhead framework and how the end-user can interact with the framework in the best possible way.
+This chapter describes a test for measuring performance between the different IoT frameworks.
 %AHF
 \section{Eclipse Arrowhead framework} 
 %Mandatory core systems.
@@ -14,7 +14,7 @@ As mentioned in the related work section, the Eclipse Arrowhead framework consis
 \end{itemize} 
 %Service registry system.
 \subsection{Service registry system}
-The service registry system is responsible for enabling discovery and registring services, Delsing et al. state. 
+The service registry system is responsible for enabling discovery and registring services, Delsing \textit{et al.} state. 
 According to the Eclipse Arrowhead projects own GitHub page, the service registry system provides the database which stores the offered services in the local cloud.\cite{Github2021}
 The Github page also states the three main objectives of the service registry system are:
 \begin{itemize}
@@ -24,13 +24,13 @@ The Github page also states the three main objectives of the service registry sy
 \end{itemize}
 %Authorization system.
 \subsection{Authorization system}
-According to the projects Github page, the Authorization system contains two databases for keeping track of which system can consume services from which other systems, depending on whether the Application system is in the same cloud or not.
-The GitHub documentation also states that if the authorization happens within the same cloud, it is called intra-cloud authorization, and if it happens across two local clouds, it is called inter-cloud authorization.\cite{Github2021}
+According to the Eclipse Arrowhead projects Github page, the Authorization system contains two databases for keeping track of which system can consume services from which other systems, depending on whether the Application system is in the same cloud or not\cite{Github2021}.
+The GitHub documentation also states that if the authorization happens within the same cloud, it is called intra-cloud authorization, and if it happens across two clouds, it is called inter-cloud authorization.
 \subsection{Orchestrator system}
 %Orchestrator system.
-The Orchestration system is responsible for pairing and finding service providers and consumers, Delsing et al. declare.
-Delsing et al. continue to state that the orchestrator also stores the orchestration requirements and the resulting orchestration rules.\cite{Delsing2017} 
-The project's documentation argues that the main objective of the orchestrator system is to find an appropriate provider for the requesting consumer system.\cite{Github2021}
+The Orchestration system is responsible for pairing and finding service providers and consumers, Delsing \textit{et al.} declare\cite{Delsing2017} .
+Delsing \textit{et al.} continue to state that the orchestrator also stores the orchestration requirements and the resulting orchestration rules.
+The project's documentation argues that the main objective of the orchestrator system is to find an appropriate provider for the requesting consumer system\cite{Delsing2017} .
 
 %Two types of orchestration
 The documentation also states that there are two types of orchestration, store orchestration and dynamic orchestration.
@@ -66,7 +66,7 @@ The tables in the Arrowhead database relevant to the orchestrator system are
 %SWAGGER
 \section{Swagger UI}
 The Eclipse Arrowhead framework has integrated Swagger UI into their core services. 
-Meaning that the databases can be accessed and altered using HTTP methods instead of SQL queries.
+Allowing the user to access and alter the databases using HTTP methods instead of SQL queries.
 Each core system has its swagger UI page, which serves as a visual, user-friendly REST API. 
 A REST API, Representational state transfer, is a way to structure an API and consists of the following main principles according to Wikipedia.\cite{WIKIREST2021}
 \begin{itemize}
@@ -109,7 +109,7 @@ Due to the vastly different implementation of the three frameworks, Amazon Web S
 The Test-Connection command in power-shell sends four 32-bit packets to the specified destination. 
 Iterating the Test-Connection 250 times gives us 1000 samples, a sufficient amount of attempts to produce an average response time.
 The results from the Test-Connection is saved in a .csv file using the Export-Csv command. 
-The Get-Content command then imports the saved data from the .csv file to keep all results through the whole loop.
+The Get-Content command then imports the saved data from the .csv file to keep all results through the whole iteration.
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{Pictures/powershell.png} 

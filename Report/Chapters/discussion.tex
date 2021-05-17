@@ -1,7 +1,7 @@
 This thesis aimed to investigate whether it was possible to use an embedded device in conjunction with the Eclipse Arrowhead framework.
 If that was possible, this thesis also aimed to show the advantages and limitations of using the Eclipse Arrowhead framework on embedded devices.
 Another goal of this thesis was to show that using the Arrowhead framework on embedded devices provides a ready-to-make example for people to try out the framework.
-To fill a void in the Arrowhead project GitHub with a complete example ready to compile and using an online compiler.
+This was done with the end goal to fill a void in the Arrowhead project GitHub with a complete example ready to compile and using an online compiler.
 
 \section{Choice of development environment}
 The IDE, integrated development environment, chosen for this thesis stood between the Mbeb online compiler and the STM CUBE IDE. 
@@ -35,7 +35,7 @@ The STM32 B-L4S5I-IOT01A board compiles the .bin file and outputs the result to 
 
 Another advantage of using STM cube IDE is debugging. 
 STM cube IDE supports debugging with breakpoints, allowing the user to inspect registers when developing.
-Mbed online compiler on the other hand has no support for debugging, making bug fixing tedious.
+Mbed online compiler, on the other hand, has no support for debugging, making bug fixing tedious.
 
 \section{Provider arcitechture}
 The implementation in this thesis follows the publish/subscribe model, as described in the related work section. 
@@ -66,16 +66,16 @@ The previous chapters showed that it was possible to use the Eclipse Arrowhead f
 The main advantage was the response time, having on average 17.5 times faster response time than its competitors. 
 A faster response time could be a great advantage when dealing with real-time applications when an immediate response is as essential as a correct one. 
 
-One disadvantage of using the Eclipse Arrowhead could be the lack of supported hardware.
+One disadvantage of using the Eclipse Arrowhead framework could be the lack of supported hardware.
 This thesis was the first example to show that it was possible to connect to the arrowhead framework on embedded devices.
 In contrast, Amazon Web Services have many examples of using different hardware. 
 Amazon Web Services also has examples showcasing the different sensors and connection possibilities of their supported boards.
 Creating an open-source example of using the Eclipse Arrowhead framework could inspire others to start developing embedded Arrowhead applications, expanding the functionality of this implementation.
 
-The eclipse Arrowhead Framework requires hardware to run on, a service the customer has to pay for when using Amazon Web Services. 
-It is probably cheaper to purchase hardware and run the Eclipse Arrowhead on a larger scale, but that requires an upfront cost.
+The eclipse Arrowhead framework requires hardware to run on, a service the customer has to pay for when using Amazon Web Services. 
+It is probably cheaper to purchase hardware and run the Eclipse Arrowhead framework on a larger scale, but that requires an upfront investment.
 In smaller-scale applications or when trying out a proof of concept, the prices offered by Amazon Web Services are hard to beat.
-When using Amazon Web Services, the user relies on that their hardware and network runs continuously, an issue which magnitude showed its face this fall. 
+When using Amazon Web Services, the user relies on that their hardware and network runs continuously.
 
 One significant advantage of using Amazon Web Services is its services offered out of the box.
 Lambda functions, S3 buckets, and all the functionality that follows with them is something the user will have to implement on their own if choosing the Eclipse Arrowhead framework.
