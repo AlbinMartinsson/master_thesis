@@ -84,6 +84,8 @@
 \usepackage[utf8]{inputenc}
 %\RequirePackage[latin1]{inputenc}
 \RequirePackage{titletoc}
+\RequirePackage{appendix}
+
 
 % ******************************************************
 % Start defining and redefining old book style stuff
@@ -376,7 +378,7 @@
    \fancyhead[LO]{}
    \fancyhead[LE]{\thepage} 
    \fancyhead[RO]{\thepage}
-   %\cleardoublepage
+   \cleardoublepage
    \thispagestyle{plain}
    \chapter[\space]{#2}
    \vspace{25mm}
@@ -384,13 +386,14 @@
    \vspace{10mm} \\ \noindent \textbf{Reformatted version of paper
     originally published in:} \\ #4
    \vspace{15mm} \\ \noindent{\copyright} #5
-   %\cleardoublepage
+   \cleardoublepage
    \fancyhf{}
    \fancyhead[RE]{\sc{\nouppercase{#1}}}
    \fancyhead[LO]{\sc{\nouppercase{\rightmark}}}
    \fancyhead[LE]{\thepage} 
    \fancyhead[RO]{\thepage}
 }
+
 
 % ------------------------------------------
 % \makepaperaccepted command, same as above
@@ -493,34 +496,6 @@
     \cleardoublepage
 }
 
-% ------------------------------------------
-% \appendix command
-% ------------------------------------------
-\renewcommand{\appendix}%
-{
-  %\cleardoublepage%
-  \setcounter{section}{0} 
-  % ------------------------------------------
-  % Adjust section headings
-  % ------------------------------------------
-  \renewcommand\section{\@startsection {section}{1}{-1pt}%
-                                   {-3.5ex \@plus -1ex \@minus -.2ex}%
-                                   {2.3ex \@plus.2ex}%
-                                   {\Large\bfseries}}
-
-  \renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
-                                     {-3.25ex\@plus -1ex \@minus -.2ex}%
-                                     {1.5ex \@plus .2ex}%
-                                     {\large\bfseries}}
-  \renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
-                                     {-3.25ex\@plus -1ex \@minus -.2ex}%
-                                     {1.5ex \@plus .2ex}%
-                                     {\normalsize\bfseries}}
-  \renewcommand{\thesection}{\arabic{chapter}\Alph{section}}%
-  \renewcommand{\thesubsection}{%
-                \arabic{chapter}\Alph{section}.\arabic{subsection}}%
-  \renewcommand{\theequation}{\arabic{chapter}\Alph{section}.\arabic{equation}}
-}
 
 % ------------------------------------------
 % \paperappendix command
