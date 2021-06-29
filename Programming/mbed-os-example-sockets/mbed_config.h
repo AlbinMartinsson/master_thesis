@@ -57,7 +57,7 @@
 #define LPTICKER_DELAY_TICKS                                                    0                                                                                                // set by target:MCU_STM32L4
 #define MBED_CONF_ALT1250_PPP_BAUDRATE                                          115200                                                                                           // set by library:ALT1250_PPP
 #define MBED_CONF_ALT1250_PPP_PROVIDE_DEFAULT                                   0                                                                                                // set by library:ALT1250_PPP
-#define MBED_CONF_APP_HOSTNAME                                                  "192.168.0.104"                                                                                  // set by application
+#define MBED_CONF_APP_HOSTNAME                                                  "192.168.0.107"                                                                                  // set by application
 #define MBED_CONF_APP_USE_TLS_SOCKET                                            0                                                                                                // set by application
 #define MBED_CONF_ATMEL_RF_ASSUME_SPACED_SPI                                    1                                                                                                // set by library:atmel-rf[STM]
 #define MBED_CONF_ATMEL_RF_FULL_SPI_SPEED                                       7500000                                                                                          // set by library:atmel-rf
@@ -300,9 +300,9 @@
 #define MBED_CONF_NANOSTACK_LIBSERVICE_PRESENT                                  1                                                                                                // set by library:nanostack-libservice
 #define MBED_CONF_NSAPI_DEFAULT_MESH_TYPE                                       THREAD                                                                                           // set by library:nsapi
 #define MBED_CONF_NSAPI_DEFAULT_STACK                                           LWIP                                                                                             // set by library:nsapi
-#define MBED_CONF_NSAPI_DEFAULT_WIFI_PASSWORD                                   "YOUR_PASSWORD_HERE"                                                                             // set by application[*]
+#define MBED_CONF_NSAPI_DEFAULT_WIFI_PASSWORD                                   "12341234123412"                                                                                 // set by application[*]
 #define MBED_CONF_NSAPI_DEFAULT_WIFI_SECURITY                                   WPA_WPA2                                                                                         // set by application[*]
-#define MBED_CONF_NSAPI_DEFAULT_WIFI_SSID                                       "WIFI_SSID"                                                                                      // set by application[*]
+#define MBED_CONF_NSAPI_DEFAULT_WIFI_SSID                                       "TP-Link_AF13"                                                                                   // set by application[*]
 #define MBED_CONF_NSAPI_DNS_ADDRESSES_LIMIT                                     10                                                                                               // set by library:nsapi
 #define MBED_CONF_NSAPI_DNS_CACHE_SIZE                                          3                                                                                                // set by library:nsapi
 #define MBED_CONF_NSAPI_DNS_RESPONSE_WAIT_TIME                                  10000                                                                                            // set by library:nsapi

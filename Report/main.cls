@@ -81,6 +81,7 @@
 \RequirePackage{float}
 \RequirePackage{parskip}
 \RequirePackage{hyperref}
+\RequirePackage{xurl}
 \usepackage[utf8]{inputenc}
 %\RequirePackage[latin1]{inputenc}
 \RequirePackage{titletoc}

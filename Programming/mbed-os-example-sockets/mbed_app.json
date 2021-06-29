@@ -2,7 +2,7 @@
     "config": {
         "hostname": {
             "help": "The demo will try to connect to this web address on port 80 (or port 443 when using tls).",
-            "value": "\"192.168.0.104\""
+            "value": "\"192.168.0.107\""
         },
         "use-tls-socket": {
             "value": false
@@ -11,8 +11,8 @@
     "target_overrides": {
         "*": {
             "nsapi.default-wifi-security": "WPA_WPA2",
-            "nsapi.default-wifi-ssid": "\"WIFI_SSID\"",
-            "nsapi.default-wifi-password": "\"YOUR_PASSWORD_HERE\"",
+            "nsapi.default-wifi-ssid": "\"TP-Link_AF13\"",
+            "nsapi.default-wifi-password": "\"12341234123412\"",
             "platform.stdio-baud-rate": 9600,
             "mbed-trace.enable": true,
             "mbed-trace.max-level": "TRACE_LEVEL_DEBUG",

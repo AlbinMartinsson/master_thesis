@@ -31,6 +31,8 @@
 #endif
 #endif // MBED_CONF_APP_USE_TLS_SOCKET
 
+DigitalOut led2(LED2);
+
 class SocketDemo
 {
     static constexpr size_t MAX_NUMBER_OF_ACCESS_POINTS = 10;
@@ -43,7 +45,12 @@ class SocketDemo
     static constexpr size_t AUTHORIZATION_PORT = 8445;    // standard HTTP port
     static constexpr size_t ORCHESTRATOR_PORT = 8441;     // standard HTTP port
     static constexpr size_t PROVIDER_PORT = 1234;         // standard HTTP port
+    static constexpr size_t REMOTE_PORT = 23;
 #endif // MBED_CONF_APP_USE_TLS_SOCKET
+
+#define PORT 1234
+#define MAX_PENDING 1
+
 
 public:
     SocketDemo() : _net(NetworkInterface::get_default_instance())
@@ -52,11 +59,11 @@ public:
 
     ~SocketDemo()
     {
-        if (_net)
-        {
+        if (_net) {
             _net->disconnect();
         }
     }
+
 
     void run()
     {
@@ -65,20 +72,19 @@ public:
             TODO send as float instead of int
         */
 
+
         BSP_TSENSOR_Init();
         int temperature = 0;
 
         temperature = BSP_TSENSOR_ReadTemp();
 
-        if (!_net)
-        {
+        if (!_net) {
             printf("Error! No network interface found.\r\n");
             return;
         }
 
         /* if we're using a wifi interface run a quick scan */
-        if (_net->wifiInterface())
-        {
+        if (_net->wifiInterface()) {
             /* the scan is not required to connect and only serves to show visible access points */
             wifi_scan();
 
@@ -92,8 +98,7 @@ public:
         printf("Connecting to the network...\r\n");
 
         nsapi_size_or_error_t result = _net->connect();
-        if (result != 0)
-        {
+        if (result != 0) {
             printf("Error! _net->connect() returned: %d\r\n", result);
             return;
         }
@@ -102,15 +107,15 @@ public:
 
         /* opening the socket only allocates resources */
 
+
         result = _socket.open(_net);
-        if (result != 0)
-        {
+        if (result != 0) {
             printf("Error! _socket.open() returned: %d\r\n", result);
             return;
         }
 
         /*
-        Registers a provider 
+        Registers a provider
         TODO Not getting status code, see what is up with that.
         */
 
@@ -121,7 +126,7 @@ public:
         int provider_id = find_id(register_provider_response.c_str());
 
         /*
-        Registers a consumer 
+        Registers a consumer
         TODO Not getting status code, see what is up with that.
         */
 
@@ -178,10 +183,24 @@ public:
         std::string provider_response = http_post_request_with_response(_net, provider_url, provider_body);
         printf("%s\n", provider_response.c_str());
 
+
+        /*
+        GET led state from provider.
+        */
+        std::string provider_url_led = find_address_and_port(start_orchestration_based_on_id_response) + "LED";
+        std::string provider_response_led = http_get_request_with_response(_net, provider_url);
+        printf("%s\n", provider_response_led.c_str());
+        if(find_led_state(provider_response_led.c_str()) == 0) {
+            turnOnLed();
+        }
+        if(find_led_state(provider_response_led.c_str()) == 1) {
+            turnOnLed();
+        }
+
+
 #if MBED_CONF_APP_USE_TLS_SOCKET
         result = _socket.set_root_ca_cert(root_ca_cert);
-        if (result != NSAPI_ERROR_OK)
-        {
+        if (result != NSAPI_ERROR_OK) {
             printf("Error: _socket.set_root_ca_cert() returned %d\n", result);
             return;
         }
@@ -200,16 +219,14 @@ public:
         /* scan call returns number of access points found */
         int result = wifi->scan(ap, MAX_NUMBER_OF_ACCESS_POINTS);
 
-        if (result <= 0)
-        {
+        if (result <= 0) {
             printf("WiFiInterface::scan() failed with return value: %d\r\n", result);
             return;
         }
 
         printf("%d networks available:\r\n", result);
 
-        for (int i = 0; i < result; i++)
-        {
+        for (int i = 0; i < result; i++) {
             printf("Network: %s secured: %s BSSID: %hhX:%hhX:%hhX:%hhx:%hhx:%hhx RSSI: %hhd Ch: %hhd\r\n",
                    ap[i].get_ssid(), get_security_string(ap[i].get_security()),
                    ap[i].get_bssid()[0], ap[i].get_bssid()[1], ap[i].get_bssid()[2],
@@ -236,8 +253,7 @@ public:
         printf("Status: %d - %s\n", res->get_status_code(), res->get_status_message().c_str());
 
         printf("Headers:\n");
-        for (size_t ix = 0; ix < res->get_headers_length(); ix++)
-        {
+        for (size_t ix = 0; ix < res->get_headers_length(); ix++) {
             printf("\t%s: %s\n", res->get_headers_fields()[ix]->c_str(), res->get_headers_values()[ix]->c_str());
         }
         printf("\nBody (%d bytes):\n\n%s\n", res->get_body_length(), res->get_body_as_string().c_str());
@@ -245,19 +261,17 @@ public:
 
     /*
     Finds the id of the systems.
-    TODO rewrite to match find_address_and_port? 
+    TODO rewrite to match find_address_and_port?
     */
 
     int find_id(const char *str)
     {
         const char *pch = strstr(str, "\"id\":");
-        if (pch)
-        {
+        if (pch) {
             int total_n = 0;
             int n;
             int i;
-            while (1 == sscanf(pch + total_n, "%*[^0123456789]%d%n", &i, &n))
-            {
+            while (1 == sscanf(pch + total_n, "%*[^0123456789]%d%n", &i, &n)) {
                 total_n += n;
                 return i;
             }
@@ -267,19 +281,17 @@ public:
 
     /*
     Finds the id of the services.
-    TODO rewrite to match find_address_and_port? 
+    TODO rewrite to match find_address_and_port?
     */
 
     int find_service_id(const char *str)
     {
         const char *pch = strstr(str, "\"serviceDefinition\":{\"id\":");
-        if (pch)
-        {
+        if (pch) {
             int total_n = 0;
             int n;
             int i;
-            while (1 == sscanf(pch + total_n, "%*[^0123456789]%d%n", &i, &n))
-            {
+            while (1 == sscanf(pch + total_n, "%*[^0123456789]%d%n", &i, &n)) {
                 total_n += n;
                 return i;
             }
@@ -287,9 +299,19 @@ public:
         return 0;
     }
 
+    void turnOnLed()
+    {
+        led2 = 1;
+    }
+
+    void turnOffLed()
+    {
+        led2 = 0;
+    }
+
     /*
     Finds the address and port of the provider.
-    TODO rewrite to match find_address_and_port? 
+    TODO rewrite to match find_address_and_port?
     */
 
     std::string find_address_and_port(std::string str)
@@ -310,6 +332,21 @@ public:
         return "http://" + address + ":" + port + "/" + uri;
     }
 
+    int find_led_state(const char *str)
+    {
+        const char *pch = strstr(str, "\"led_state\":");
+        if (pch) {
+            int total_n = 0;
+            int n;
+            int i;
+            while (1 == sscanf(pch + total_n, "%*[^0123456789]%d%n", &i, &n)) {
+                total_n += n;
+                return i;
+            }
+        }
+        return 0;
+    }
+
     /*
     Makes a HTTP POST to url with body
     */
@@ -319,8 +356,7 @@ public:
         HttpRequest *post_request = new HttpRequest(_net, HTTP_POST, url.c_str());
         post_request->set_header("Content-Type", "application/json");
         HttpResponse *post_response = post_request->send(body.c_str(), strlen(body.c_str()));
-        if (!post_response)
-        {
+        if (!post_response) {
             printf("HttpRequest failed (error code %d)\n", post_request->get_error());
             return std::to_string(post_request->get_error());
         }
@@ -341,8 +377,7 @@ public:
 
         HttpResponse *get_request_response = get_request->send();
 
-        if (!get_request_response)
-        {
+        if (!get_request_response) {
             printf("HttpRequest failed (error code %d)\n", get_request->get_error());
             return std::to_string(get_request->get_error());
         }
@@ -354,12 +389,31 @@ public:
     }
 
 private:
+    bool resolve_hostname(SocketAddress &address)
+    {
+        const char hostname[] = MBED_CONF_APP_HOSTNAME;
+
+        /* get the host address */
+        printf("\nResolve hostname %s\r\n", hostname);
+        nsapi_size_or_error_t result = _net->gethostbyname(hostname, &address);
+        if (result != 0) {
+            printf("Error! gethostbyname(%s) returned: %d\r\n", hostname, result);
+            return false;
+        }
+
+        printf("%s address is %s\r\n", hostname, (address.get_ip_address() ? address.get_ip_address() : "None") );
+
+        return true;
+    }
+
+private:
     NetworkInterface *_net;
 
 #if MBED_CONF_APP_USE_TLS_SOCKET
     TLSSocket _socket;
 #else
     TCPSocket _socket;
+    TCPSocket _client;
 #endif // MBED_CONF_APP_USE_TLS_SOCKET
 };
 
